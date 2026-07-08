@@ -1,7 +1,7 @@
 import { EntregaForm } from "./EntregaForm";
 import { Cabecalho } from "@/components/ui/Cabecalho";
 import type { Colaborador, TipoEPI } from "@/lib/types";
-import { apiFetch } from "@/lib/api";
+import { apiFetch, baseUrl } from "@/lib/api";
 
 async function getListas() {
   const [colaboradores, tiposEpi] = await Promise.all([
@@ -12,7 +12,7 @@ async function getListas() {
 }
 
 export default async function EntregaEpiPage() {
-  const { colaboradores, tiposEpi } = await getListas();
+  const [{ colaboradores, tiposEpi }, origem] = await Promise.all([getListas(), baseUrl()]);
 
   return (
     <div>
@@ -21,7 +21,7 @@ export default async function EntregaEpiPage() {
         titulo="Entrega de EPI"
         descricao="A validade é calculada a partir da data de entrega. O alerta aparece no dashboard 30 dias antes de vencer."
       />
-      <EntregaForm colaboradores={colaboradores} tiposEpi={tiposEpi} />
+      <EntregaForm colaboradores={colaboradores} tiposEpi={tiposEpi} origem={origem} />
     </div>
   );
 }

@@ -23,6 +23,7 @@ export interface EntregaEPI {
   dataDevolucao?: string; // ISO date, se devolvido
   assinaturaNome: string;
   assinaturaData: string;
+  assinaturaImagem?: string; // data URI PNG do traço desenhado
   qrCodeValor: string;
 }
 

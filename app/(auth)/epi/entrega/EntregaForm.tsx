@@ -1,43 +1,65 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { Colaborador, TipoEPI, EntregaEPI } from "@/lib/types";
 import { QrCode } from "@/components/ui/QrCode";
+import { CanvasAssinatura } from "@/components/ui/CanvasAssinatura";
 
 export function EntregaForm({
   colaboradores,
   tiposEpi,
+  origem,
 }: {
   colaboradores: Colaborador[];
   tiposEpi: TipoEPI[];
+  origem: string;
 }) {
   const router = useRouter();
   const [colaboradorId, setColaboradorId] = useState(colaboradores[0]?.id ?? "");
   const [tipoEpiId, setTipoEpiId] = useState(tiposEpi[0]?.id ?? "");
   const [assinaturaNome, setAssinaturaNome] = useState("");
+  const [assinaturaImagem, setAssinaturaImagem] = useState<string | null>(null);
   const [salvando, setSalvando] = useState(false);
+  const [erro, setErro] = useState<string | null>(null);
   const [confirmada, setConfirmada] = useState<EntregaEPI | null>(null);
 
   const tipoSelecionado = tiposEpi.find((t) => t.id === tipoEpiId);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+
+    if (!assinaturaImagem) {
+      setErro("Peça ao colaborador para assinar antes de registrar a entrega.");
+      return;
+    }
+
+    setErro(null);
     setSalvando(true);
+
     const res = await fetch("/api/entregas", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ colaboradorId, tipoEpiId, assinaturaNome }),
+      body: JSON.stringify({ colaboradorId, tipoEpiId, assinaturaNome, assinaturaImagem }),
     });
-    const entrega = await res.json();
-    setConfirmada(entrega);
-    setAssinaturaNome("");
+
     setSalvando(false);
+
+    if (!res.ok) {
+      const { error } = await res.json();
+      setErro(error ?? "Não foi possível registrar a entrega.");
+      return;
+    }
+
+    setConfirmada(await res.json());
+    setAssinaturaNome("");
+    setAssinaturaImagem(null);
     router.refresh();
   }
 
   return (
-    <div className="grid lg:grid-cols-[minmax(0,26rem)_auto] gap-8 items-start">
+    <div className="grid lg:grid-cols-[minmax(0,28rem)_auto] gap-8 items-start">
       <form onSubmit={handleSubmit} className="placa p-5">
         <div className="flex flex-col gap-4">
           <label className="block">
@@ -76,15 +98,18 @@ export function EntregaForm({
           </label>
 
           <label className="block">
-            <span className="etiqueta">Assinatura de recebimento</span>
+            <span className="etiqueta">Nome de quem recebe</span>
             <input
               value={assinaturaNome}
               onChange={(e) => setAssinaturaNome(e.target.value)}
               className="campo mt-1"
-              placeholder="Nome de quem recebe"
               required
             />
           </label>
+
+          <CanvasAssinatura onChange={setAssinaturaImagem} />
+
+          {erro && <p className="etiqueta text-perigo">{erro}</p>}
 
           <button type="submit" className="botao botao-campo mt-2" disabled={salvando}>
             {salvando ? "Registrando" : "Registrar entrega"}
@@ -110,12 +135,20 @@ export function EntregaForm({
           </div>
 
           <div className="flex justify-center">
-            <QrCode valor={confirmada.qrCodeValor} tamanho={160} />
+            {/* Codifica a URL da ficha: escanear abre o equipamento no celular. */}
+            <QrCode valor={`${origem}/equipamento/${confirmada.id}`} tamanho={160} />
           </div>
 
           <p className="dado mt-3">{confirmada.qrCodeValor}</p>
-          <p className="etiqueta mt-1">QR do equipamento</p>
+          <p className="etiqueta mt-1">Cole na etiqueta do equipamento</p>
           <p className="dado text-fumaca mt-4">Vence em {confirmada.dataValidade}</p>
+
+          <Link
+            href={`/equipamento/${confirmada.id}`}
+            className="etiqueta text-advertencia hover:underline inline-block mt-4"
+          >
+            Abrir ficha do equipamento →
+          </Link>
         </div>
       )}
     </div>

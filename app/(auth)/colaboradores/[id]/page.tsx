@@ -89,7 +89,11 @@ export default async function ColaboradorDetalhePage({
             const devolvido = Boolean(e.dataDevolucao);
             return (
               <tr key={e.id} className="border-b border-traco last:border-0">
-                <td className="py-3 px-4 text-sm font-medium">{tipo?.nome}</td>
+                <td className="py-3 px-4 text-sm font-medium">
+                  <Link href={`/equipamento/${e.id}`} className="hover:text-advertencia">
+                    {tipo?.nome}
+                  </Link>
+                </td>
                 <td className="py-3 px-4 dado text-fumaca">{e.dataEntrega}</td>
                 <td className="py-3 px-4 dado text-fumaca">{e.dataValidade}</td>
                 <td className="py-3 px-4 dado text-fumaca">
