@@ -1,0 +1,338 @@
+{
+  "colaboradores": [
+    {
+      "id": "col-1",
+      "nome": "Marcos Silva",
+      "funcao": "Soldador",
+      "empresaCliente": "Metalúrgica Recife"
+    },
+    {
+      "id": "col-2",
+      "nome": "Ana Paula Souza",
+      "funcao": "Técnica de Segurança",
+      "empresaCliente": "Metalúrgica Recife"
+    },
+    {
+      "id": "col-3",
+      "nome": "João Pedro Lima",
+      "funcao": "Operador de Empilhadeira",
+      "empresaCliente": "Logística Nordeste"
+    },
+    {
+      "id": "col-4",
+      "nome": "Carla Mendes",
+      "funcao": "Eletricista",
+      "empresaCliente": "Metalúrgica Recife"
+    },
+    {
+      "id": "col-5",
+      "nome": "Rafael Torres",
+      "funcao": "Pedreiro",
+      "empresaCliente": "Construtora Atlântico"
+    },
+    {
+      "id": "col-6",
+      "nome": "Beatriz Costa",
+      "funcao": "Auxiliar de Produção",
+      "empresaCliente": "Logística Nordeste"
+    },
+    {
+      "id": "col-7",
+      "nome": "Diego Fernandes",
+      "funcao": "Montador",
+      "empresaCliente": "Construtora Atlântico"
+    },
+    {
+      "id": "col-8",
+      "nome": "Larissa Alves",
+      "funcao": "Operadora de Máquina",
+      "empresaCliente": "Metalúrgica Recife"
+    }
+  ],
+  "tiposEpi": [
+    {
+      "id": "epi-capacete",
+      "nome": "Capacete de segurança",
+      "validadeMeses": 24
+    },
+    {
+      "id": "epi-luva",
+      "nome": "Luva de proteção",
+      "validadeMeses": 6
+    },
+    {
+      "id": "epi-oculos",
+      "nome": "Óculos de proteção",
+      "validadeMeses": 12
+    },
+    {
+      "id": "epi-bota",
+      "nome": "Bota de segurança",
+      "validadeMeses": 12
+    },
+    {
+      "id": "epi-protetor-auricular",
+      "nome": "Protetor auricular",
+      "validadeMeses": 6
+    },
+    {
+      "id": "epi-cinto",
+      "nome": "Cinto de segurança (trabalho em altura)",
+      "validadeMeses": 12
+    }
+  ],
+  "entregas": [
+    {
+      "id": "ent-1",
+      "colaboradorId": "col-1",
+      "tipoEpiId": "epi-capacete",
+      "dataEntrega": "2023-07-14",
+      "dataValidade": "2025-07-14",
+      "assinaturaNome": "Marcos Silva",
+      "assinaturaData": "2023-07-14",
+      "qrCodeValor": "ent-1"
+    },
+    {
+      "id": "ent-2",
+      "colaboradorId": "col-1",
+      "tipoEpiId": "epi-oculos",
+      "dataEntrega": "2024-08-07",
+      "dataValidade": "2025-08-07",
+      "assinaturaNome": "Marcos Silva",
+      "assinaturaData": "2024-08-07",
+      "qrCodeValor": "ent-2"
+    },
+    {
+      "id": "ent-3",
+      "colaboradorId": "col-2",
+      "tipoEpiId": "epi-oculos",
+      "dataEntrega": "2025-01-24",
+      "dataValidade": "2026-01-24",
+      "assinaturaNome": "Ana Paula Souza",
+      "assinaturaData": "2025-01-24",
+      "qrCodeValor": "ent-3"
+    },
+    {
+      "id": "ent-4",
+      "colaboradorId": "col-2",
+      "tipoEpiId": "epi-protetor-auricular",
+      "dataEntrega": "2026-01-19",
+      "dataValidade": "2026-07-19",
+      "assinaturaNome": "Ana Paula Souza",
+      "assinaturaData": "2026-01-19",
+      "qrCodeValor": "ent-4"
+    },
+    {
+      "id": "ent-5",
+      "colaboradorId": "col-3",
+      "tipoEpiId": "epi-protetor-auricular",
+      "dataEntrega": "2026-01-29",
+      "dataValidade": "2026-07-29",
+      "assinaturaNome": "João Pedro Lima",
+      "assinaturaData": "2026-01-29",
+      "qrCodeValor": "ent-5"
+    },
+    {
+      "id": "ent-6",
+      "colaboradorId": "col-3",
+      "tipoEpiId": "epi-capacete",
+      "dataEntrega": "2024-08-17",
+      "dataValidade": "2026-08-17",
+      "assinaturaNome": "João Pedro Lima",
+      "assinaturaData": "2024-08-17",
+      "qrCodeValor": "ent-6"
+    },
+    {
+      "id": "ent-7",
+      "colaboradorId": "col-4",
+      "tipoEpiId": "epi-capacete",
+      "dataEntrega": "2024-08-27",
+      "dataValidade": "2026-08-27",
+      "assinaturaNome": "Carla Mendes",
+      "assinaturaData": "2024-08-27",
+      "qrCodeValor": "ent-7"
+    },
+    {
+      "id": "ent-8",
+      "colaboradorId": "col-4",
+      "tipoEpiId": "epi-oculos",
+      "dataEntrega": "2025-09-21",
+      "dataValidade": "2026-09-21",
+      "assinaturaNome": "Carla Mendes",
+      "assinaturaData": "2025-09-21",
+      "qrCodeValor": "ent-8"
+    },
+    {
+      "id": "ent-9",
+      "colaboradorId": "col-5",
+      "tipoEpiId": "epi-oculos",
+      "dataEntrega": "2025-11-20",
+      "dataValidade": "2026-11-20",
+      "assinaturaNome": "Rafael Torres",
+      "assinaturaData": "2025-11-20",
+      "qrCodeValor": "ent-9"
+    },
+    {
+      "id": "ent-10",
+      "colaboradorId": "col-5",
+      "tipoEpiId": "epi-protetor-auricular",
+      "dataEntrega": "2026-08-27",
+      "dataValidade": "2027-02-27",
+      "assinaturaNome": "Rafael Torres",
+      "assinaturaData": "2026-08-27",
+      "qrCodeValor": "ent-10"
+    },
+    {
+      "id": "ent-11",
+      "colaboradorId": "col-6",
+      "tipoEpiId": "epi-protetor-auricular",
+      "dataEntrega": "2026-12-05",
+      "dataValidade": "2027-06-05",
+      "assinaturaNome": "Beatriz Costa",
+      "assinaturaData": "2026-12-05",
+      "qrCodeValor": "ent-11"
+    },
+    {
+      "id": "ent-12",
+      "colaboradorId": "col-6",
+      "tipoEpiId": "epi-capacete",
+      "dataEntrega": "2025-08-02",
+      "dataValidade": "2027-08-02",
+      "assinaturaNome": "Beatriz Costa",
+      "assinaturaData": "2025-08-02",
+      "qrCodeValor": "ent-12"
+    },
+    {
+      "id": "ent-13",
+      "colaboradorId": "col-7",
+      "tipoEpiId": "epi-capacete",
+      "dataEntrega": "2023-07-14",
+      "dataValidade": "2025-07-14",
+      "assinaturaNome": "Diego Fernandes",
+      "assinaturaData": "2023-07-14",
+      "qrCodeValor": "ent-13"
+    },
+    {
+      "id": "ent-14",
+      "colaboradorId": "col-7",
+      "tipoEpiId": "epi-oculos",
+      "dataEntrega": "2024-08-07",
+      "dataValidade": "2025-08-07",
+      "assinaturaNome": "Diego Fernandes",
+      "assinaturaData": "2024-08-07",
+      "qrCodeValor": "ent-14"
+    },
+    {
+      "id": "ent-15",
+      "colaboradorId": "col-8",
+      "tipoEpiId": "epi-oculos",
+      "dataEntrega": "2025-01-24",
+      "dataValidade": "2026-01-24",
+      "assinaturaNome": "Larissa Alves",
+      "assinaturaData": "2025-01-24",
+      "qrCodeValor": "ent-15"
+    },
+    {
+      "id": "ent-16",
+      "colaboradorId": "col-8",
+      "tipoEpiId": "epi-protetor-auricular",
+      "dataEntrega": "2026-01-19",
+      "dataValidade": "2026-07-19",
+      "assinaturaNome": "Larissa Alves",
+      "assinaturaData": "2026-01-19",
+      "qrCodeValor": "ent-16"
+    }
+  ],
+  "checklists": [
+    {
+      "id": "chk-1",
+      "setor": "Solda",
+      "data": "2026-07-07",
+      "tecnicoResponsavel": "Ana Paula Souza",
+      "itens": [
+        {
+          "descricao": "EPIs em uso corretamente",
+          "resposta": "sim"
+        },
+        {
+          "descricao": "Extintores acessíveis",
+          "resposta": "sim"
+        },
+        {
+          "descricao": "Área de solda isolada",
+          "resposta": "sim"
+        },
+        {
+          "descricao": "Iluminação adequada",
+          "resposta": "na"
+        }
+      ]
+    },
+    {
+      "id": "chk-2",
+      "setor": "Logística / Pátio",
+      "data": "2026-07-06",
+      "tecnicoResponsavel": "Ana Paula Souza",
+      "itens": [
+        {
+          "descricao": "Empilhadeiras com checklist do dia",
+          "resposta": "sim"
+        },
+        {
+          "descricao": "Piso livre de obstáculos",
+          "resposta": "nao"
+        },
+        {
+          "descricao": "Sinalização de solo visível",
+          "resposta": "sim"
+        }
+      ]
+    },
+    {
+      "id": "chk-3",
+      "setor": "Construção / Altura",
+      "data": "2026-07-05",
+      "tecnicoResponsavel": "Ana Paula Souza",
+      "itens": [
+        {
+          "descricao": "Cinto de segurança inspecionado",
+          "resposta": "sim"
+        },
+        {
+          "descricao": "Andaime travado",
+          "resposta": "sim"
+        },
+        {
+          "descricao": "Guarda-corpo instalado",
+          "resposta": "sim"
+        }
+      ]
+    }
+  ],
+  "incidentes": [
+    {
+      "id": "inc-1",
+      "data": "2026-07-03",
+      "local": "Pátio de logística",
+      "colaboradorId": "col-3",
+      "gravidade": "leve",
+      "descricao": "Quase queda ao descer da empilhadeira, piso molhado."
+    },
+    {
+      "id": "inc-2",
+      "data": "2026-06-26",
+      "local": "Setor de solda",
+      "colaboradorId": "col-1",
+      "gravidade": "moderado",
+      "descricao": "Faísca atingiu luva, sem ferimento por estar dentro da validade."
+    },
+    {
+      "id": "inc-3",
+      "data": "2026-06-18",
+      "local": "Obra Construtora Atlântico",
+      "colaboradorId": "col-5",
+      "gravidade": "grave",
+      "descricao": "Queda de material de andaime, área isolada a tempo."
+    }
+  ]
+}
