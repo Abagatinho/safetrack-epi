@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Table } from "@/components/ui/Table";
+import { Cabecalho } from "@/components/ui/Cabecalho";
 import { NovoColaboradorForm } from "./NovoColaboradorForm";
 import type { Colaborador } from "@/lib/types";
 import { apiFetch } from "@/lib/api";
@@ -13,17 +14,22 @@ export default async function ColaboradoresPage() {
 
   return (
     <div>
-      <h1 className="text-xl font-semibold mb-4">Colaboradores</h1>
+      <Cabecalho eyebrow="Cadastro" titulo="Colaboradores" />
+
       <NovoColaboradorForm />
-      <Table headers={["Nome", "Função", "Empresa cliente", ""]}>
+
+      <Table headers={["Nome", "Função", "Empresa cliente", "Histórico"]}>
         {colaboradores.map((c) => (
-          <tr key={c.id} className="border-b border-gray-100">
-            <td className="py-2 pr-4">{c.nome}</td>
-            <td className="py-2 pr-4">{c.funcao}</td>
-            <td className="py-2 pr-4">{c.empresaCliente}</td>
-            <td className="py-2 pr-4">
-              <Link href={`/colaboradores/${c.id}`} className="text-blue-600 text-sm">
-                Ver histórico
+          <tr key={c.id} className="border-b border-traco last:border-0">
+            <td className="py-3 px-4 text-sm font-medium">{c.nome}</td>
+            <td className="py-3 px-4 text-sm text-fumaca">{c.funcao}</td>
+            <td className="py-3 px-4 text-sm text-fumaca">{c.empresaCliente}</td>
+            <td className="py-3 px-4">
+              <Link
+                href={`/colaboradores/${c.id}`}
+                className="etiqueta text-advertencia hover:underline"
+              >
+                Ver ficha →
               </Link>
             </td>
           </tr>

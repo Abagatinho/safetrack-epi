@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import type { Colaborador, TipoEPI } from "@/lib/types";
+import type { Colaborador, TipoEPI, EntregaEPI } from "@/lib/types";
 
 export function EntregaForm({
   colaboradores,
@@ -15,10 +15,14 @@ export function EntregaForm({
   const [colaboradorId, setColaboradorId] = useState(colaboradores[0]?.id ?? "");
   const [tipoEpiId, setTipoEpiId] = useState(tiposEpi[0]?.id ?? "");
   const [assinaturaNome, setAssinaturaNome] = useState("");
-  const [confirmada, setConfirmada] = useState<{ qrCodeValor: string } | null>(null);
+  const [salvando, setSalvando] = useState(false);
+  const [confirmada, setConfirmada] = useState<EntregaEPI | null>(null);
+
+  const tipoSelecionado = tiposEpi.find((t) => t.id === tipoEpiId);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setSalvando(true);
     const res = await fetch("/api/entregas", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -27,56 +31,100 @@ export function EntregaForm({
     const entrega = await res.json();
     setConfirmada(entrega);
     setAssinaturaNome("");
+    setSalvando(false);
     router.refresh();
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3 max-w-sm">
-        <label className="text-sm">
-          Colaborador
-          <select
-            value={colaboradorId}
-            onChange={(e) => setColaboradorId(e.target.value)}
-            className="border rounded px-2 py-1 w-full mt-1"
-          >
-            {colaboradores.map((c) => (
-              <option key={c.id} value={c.id}>{c.nome}</option>
-            ))}
-          </select>
-        </label>
-        <label className="text-sm">
-          EPI
-          <select
-            value={tipoEpiId}
-            onChange={(e) => setTipoEpiId(e.target.value)}
-            className="border rounded px-2 py-1 w-full mt-1"
-          >
-            {tiposEpi.map((t) => (
-              <option key={t.id} value={t.id}>{t.nome}</option>
-            ))}
-          </select>
-        </label>
-        <label className="text-sm">
-          Assinatura (nome de confirmação)
-          <input
-            value={assinaturaNome}
-            onChange={(e) => setAssinaturaNome(e.target.value)}
-            className="border rounded px-2 py-1 w-full mt-1"
-            required
-          />
-        </label>
-        <button type="submit" className="bg-black text-white rounded px-3 py-2 text-sm">
-          Registrar entrega
-        </button>
+    <div className="grid lg:grid-cols-[minmax(0,26rem)_auto] gap-8 items-start">
+      <form onSubmit={handleSubmit} className="placa p-5">
+        <div className="flex flex-col gap-4">
+          <label className="block">
+            <span className="etiqueta">Colaborador</span>
+            <select
+              value={colaboradorId}
+              onChange={(e) => setColaboradorId(e.target.value)}
+              className="campo mt-1"
+            >
+              {colaboradores.map((c) => (
+                <option key={c.id} value={c.id}>
+                  {c.nome} — {c.funcao}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label className="block">
+            <span className="etiqueta">Equipamento</span>
+            <select
+              value={tipoEpiId}
+              onChange={(e) => setTipoEpiId(e.target.value)}
+              className="campo mt-1"
+            >
+              {tiposEpi.map((t) => (
+                <option key={t.id} value={t.id}>
+                  {t.nome}
+                </option>
+              ))}
+            </select>
+            {tipoSelecionado && (
+              <span className="dado text-fumaca mt-2 block">
+                Validade de {tipoSelecionado.validadeMeses} meses
+              </span>
+            )}
+          </label>
+
+          <label className="block">
+            <span className="etiqueta">Assinatura de recebimento</span>
+            <input
+              value={assinaturaNome}
+              onChange={(e) => setAssinaturaNome(e.target.value)}
+              className="campo mt-1"
+              placeholder="Nome de quem recebe"
+              required
+            />
+          </label>
+
+          <button type="submit" className="botao botao-campo mt-2" disabled={salvando}>
+            {salvando ? "Registrando" : "Registrar entrega"}
+          </button>
+        </div>
       </form>
 
       {confirmada && (
-        <div className="mt-6 border rounded p-4 inline-block text-center">
-          <p className="text-sm text-gray-500 mb-2">QR Code do equipamento (ilustrativo)</p>
-          <div className="w-32 h-32 bg-gray-200 flex items-center justify-center text-xs text-gray-500 mx-auto">
-            {confirmada.qrCodeValor}
+        <div className="placa p-5 text-center">
+          <div className="flex items-center gap-2 justify-center mb-4">
+            <span className="pictograma bg-seguranca" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" className="text-aco">
+                <path
+                  d="M4 8.5l2.8 2.8L12 5.5"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  fill="none"
+                  strokeLinecap="square"
+                />
+              </svg>
+            </span>
+            <span className="etiqueta text-seguranca">Entrega registrada</span>
           </div>
+
+          <div className="w-40 h-40 bg-grafite mx-auto flex items-center justify-center p-3">
+            <div className="grid grid-cols-8 gap-px w-full h-full" aria-hidden="true">
+              {/* Marca ilustrativa. O QR real é gerado na versão de produção. */}
+              {Array.from({ length: 64 }).map((_, i) => (
+                <span
+                  key={i}
+                  className={
+                    (i * 7 + Math.floor(i / 8) * 3) % 5 < 2 ? "bg-aco" : "bg-transparent"
+                  }
+                />
+              ))}
+            </div>
+          </div>
+
+          <p className="dado mt-3">{confirmada.qrCodeValor}</p>
+          <p className="etiqueta mt-1">QR do equipamento · ilustrativo</p>
+          <p className="dado text-fumaca mt-4">Vence em {confirmada.dataValidade}</p>
         </div>
       )}
     </div>

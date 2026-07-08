@@ -1,9 +1,14 @@
 import { ChecklistForm } from "./ChecklistForm";
+import { Cabecalho } from "@/components/ui/Cabecalho";
 
 export default function ChecklistPage() {
   return (
     <div>
-      <h1 className="text-xl font-semibold mb-4">Checklist diário de segurança</h1>
+      <Cabecalho
+        eyebrow="Inspeção de campo"
+        titulo="Checklist diário"
+        descricao="Preencha no setor, pelo celular. O indicador no dashboard sobe assim que você registra."
+      />
       <ChecklistForm />
     </div>
   );

@@ -1,26 +1,276 @@
 @import "tailwindcss";
 
+/* ============================================================
+   SafeTrack EPI — Design System
+   Cores derivadas da NBR 7195 (Cores na segurança do trabalho).
+   O significado de cada cor é normativo, não estético.
+   Documentação: docs/DESIGN-SYSTEM.md
+
+   Componentes ficam em @layer components para que as utilities do
+   Tailwind (text-perigo, bg-aco…) possam sobrescrevê-los no uso.
+   ============================================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Cores normativas — NBR 7195 */
+  --perigo: #c8102e; /* vermelho: perigo, equipamento de incêndio */
+  --perigo-fraco: #fbe7ea;
+  --cuidado: #ffc72c; /* amarelo: cuidado, atenção */
+  --cuidado-fraco: #fff6dc;
+  --seguranca: #00843d; /* verde: segurança */
+  --seguranca-fraco: #e2f1e8;
+  --advertencia: #005eb8; /* azul: advertência, EPI obrigatório */
+  --advertencia-fraco: #e3edf7;
+  --maquina: #e8590c; /* laranja: partes móveis de máquina */
+
+  /* Neutros industriais */
+  --grafite: #1b1e23; /* chassi, texto principal */
+  --carvao: #2a2e35; /* elevação dentro do chassi */
+  --fumaca: #6b7078; /* texto secundário sobre superfície clara */
+  --neblina: #9aa0a8; /* texto secundário sobre o chassi (6.5:1) */
+  --traco: #c9cbc6; /* bordas */
+  --concreto: #e3e4e0; /* superfície da aplicação */
+  --aco: #fafaf9; /* placas, cards */
+
+  /* Faixa de sinalização 45° — só aparece quando há perigo real */
+  --hachura: repeating-linear-gradient(
+    45deg,
+    var(--cuidado) 0 14px,
+    var(--grafite) 14px 28px
+  );
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-perigo: var(--perigo);
+  --color-perigo-fraco: var(--perigo-fraco);
+  --color-cuidado: var(--cuidado);
+  --color-cuidado-fraco: var(--cuidado-fraco);
+  --color-seguranca: var(--seguranca);
+  --color-seguranca-fraco: var(--seguranca-fraco);
+  --color-advertencia: var(--advertencia);
+  --color-advertencia-fraco: var(--advertencia-fraco);
+  --color-maquina: var(--maquina);
+  --color-grafite: var(--grafite);
+  --color-carvao: var(--carvao);
+  --color-fumaca: var(--fumaca);
+  --color-neblina: var(--neblina);
+  --color-traco: var(--traco);
+  --color-concreto: var(--concreto);
+  --color-aco: var(--aco);
+
+  --font-display: var(--font-archivo);
+  --font-sans: var(--font-plex-sans);
+  --font-mono: var(--font-plex-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    background: var(--concreto);
+    color: var(--grafite);
+    font-family: var(--font-plex-sans), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  select:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--advertencia);
+    outline-offset: 2px;
+  }
+
+  /* O foco precisa ser visível também dentro do chassi escuro. */
+  .chassi a:focus-visible {
+    outline-color: var(--cuidado);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* ---------- Tipografia ---------- */
+
+  /* Letreiro de placa: caixa alta, apertado, pesado. Usar com restrição. */
+  .letreiro {
+    font-family: var(--font-archivo), system-ui, sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+  }
+
+  /* Etiqueta de campo: pequena, espaçada, caixa alta. */
+  .etiqueta {
+    font-family: var(--font-plex-mono), monospace;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--fumaca);
+  }
+
+  /* Dados tabulares: datas, IDs, números de CA. */
+  .dado {
+    font-family: var(--font-plex-mono), monospace;
+    font-variant-numeric: tabular-nums;
+    font-size: 0.8125rem;
+  }
+
+  /* ---------- Superfícies ---------- */
+
+  /* Placa: chapa de aço com canto reto. A unidade de conteúdo do sistema. */
+  .placa {
+    background: var(--aco);
+    border: 1px solid var(--traco);
+    box-shadow: 0 1px 2px rgb(27 30 35 / 0.06);
+  }
+
+  /* Chassi: painel de controle escuro. Sidebar e rodapé. */
+  .chassi {
+    background: var(--grafite);
+    color: var(--aco);
+  }
+
+  /* ---------- Sinalização ---------- */
+
+  /* Faixa hachurada. Renderizar apenas quando houver risco ativo. */
+  .faixa-risco {
+    background-image: var(--hachura);
+    height: 6px;
+  }
+
+  /* Pictograma circular. Único raio total do sistema — a norma usa círculo. */
+  .pictograma {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 9999px;
+    flex-shrink: 0;
+  }
+
+  /* ---------- Controles ---------- */
+
+  .campo {
+    background: var(--aco);
+    border: 1px solid var(--traco);
+    padding: 0.5rem 0.625rem;
+    font-size: 0.875rem;
+    color: var(--grafite);
+    width: 100%;
+  }
+
+  .campo:focus-visible {
+    border-color: var(--advertencia);
+  }
+
+  .botao {
+    background: var(--grafite);
+    color: var(--aco);
+    font-family: var(--font-archivo), system-ui, sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.8125rem;
+    padding: 0.625rem 1.25rem;
+    border: 1px solid var(--grafite);
+    transition: background 120ms ease;
+  }
+
+  .botao:hover:not(:disabled) {
+    background: var(--carvao);
+  }
+
+  .botao:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  /* Ação de campo: quem usa está de luva, no chão de fábrica. Alvo grande. */
+  .botao-campo {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.9375rem;
+  }
+
+  /* ---------- Quadro DIAS SEM ACIDENTES ---------- */
+  /* Elemento-assinatura. Chapa esmaltada parafusada, dígitos split-flap.
+     É o objeto físico que esta plataforma substitui. */
+
+  .quadro {
+    background: var(--grafite);
+    border: 3px solid var(--carvao);
+    box-shadow:
+      inset 0 1px 0 rgb(250 250 249 / 0.08),
+      0 12px 32px rgb(27 30 35 / 0.28);
+    position: relative;
+  }
+
+  /* Os quatro parafusos da chapa. */
+  .quadro::before,
+  .quadro::after,
+  .parafusos::before,
+  .parafusos::after {
+    content: "";
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border-radius: 9999px;
+    background: radial-gradient(circle at 35% 35%, #5b6069, #23262c);
+    box-shadow: inset 0 -1px 1px rgb(0 0 0 / 0.5);
+  }
+
+  .quadro::before {
+    top: 10px;
+    left: 10px;
+  }
+  .quadro::after {
+    top: 10px;
+    right: 10px;
+  }
+  .parafusos::before {
+    bottom: 10px;
+    left: 10px;
+  }
+  .parafusos::after {
+    bottom: 10px;
+    right: 10px;
+  }
+
+  /* Célula de dígito: chapa dividida ao meio, como um split-flap. */
+  .digito {
+    font-family: var(--font-archivo), system-ui, sans-serif;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    background: linear-gradient(
+      180deg,
+      #33373f 0 calc(50% - 1px),
+      #1f2228 50%,
+      #26292f 100%
+    );
+    color: var(--aco);
+    border: 1px solid #3c4149;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    position: relative;
+  }
+
+  /* A dobradiça horizontal do split-flap. */
+  .digito::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 50%;
+    height: 1px;
+    background: rgb(0 0 0 / 0.55);
+  }
 }

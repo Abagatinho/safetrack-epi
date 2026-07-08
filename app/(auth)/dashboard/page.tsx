@@ -1,4 +1,6 @@
 import { Card } from "@/components/ui/Card";
+import { FaixaRisco } from "@/components/ui/FaixaRisco";
+import { QuadroDiasSemAcidente } from "@/components/ui/QuadroDiasSemAcidente";
 import { apiFetch } from "@/lib/api";
 
 type Resumo = {
@@ -19,14 +21,39 @@ export default async function DashboardPage() {
 
   return (
     <div>
-      <h1 className="text-xl font-semibold mb-4">Dashboard</h1>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-        <Card title="Colaboradores" value={resumo.totalColaboradores} />
-        <Card title="EPIs vencendo (30d)" value={resumo.epiVencendo} />
-        <Card title="EPIs vencidos" value={resumo.epiVencido} />
-        <Card title="Dias sem acidente" value={resumo.diasSemAcidente ?? "-"} />
-        <Card title="Checklists registrados" value={resumo.checklistsRegistrados} />
-        <Card title="Incidentes (30d)" value={resumo.incidentesUltimos30d} />
+      <header className="mb-6">
+        <p className="etiqueta">Visão geral</p>
+        <h1 className="letreiro text-3xl mt-1">Dashboard</h1>
+      </header>
+
+      <FaixaRisco quantidade={resumo.epiVencido} href="/colaboradores" />
+
+      <div className="grid gap-6 lg:grid-cols-[1fr_auto] items-start">
+        <div className="grid grid-cols-2 xl:grid-cols-3 gap-4">
+          <Card
+            title="EPIs vencidos"
+            value={resumo.epiVencido}
+            tom={resumo.epiVencido > 0 ? "perigo" : "seguranca"}
+            subtitle="Troca imediata"
+          />
+          <Card
+            title="Vencendo em 30 dias"
+            value={resumo.epiVencendo}
+            tom={resumo.epiVencendo > 0 ? "cuidado" : "seguranca"}
+            subtitle="Programar reposição"
+          />
+          <Card title="Colaboradores" value={resumo.totalColaboradores} />
+          <Card title="Checklists registrados" value={resumo.checklistsRegistrados} />
+          <Card
+            title="Incidentes (30 dias)"
+            value={resumo.incidentesUltimos30d}
+            tom={resumo.incidentesUltimos30d > 0 ? "cuidado" : "seguranca"}
+          />
+        </div>
+
+        <div className="w-full lg:w-72">
+          <QuadroDiasSemAcidente dias={resumo.diasSemAcidente ?? 0} tamanho="compacto" />
+        </div>
       </div>
     </div>
   );

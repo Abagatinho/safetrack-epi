@@ -1,31 +1,27 @@
 import Link from "next/link";
-
-const NAV_ITEMS = [
-  { href: "/dashboard", label: "Dashboard" },
-  { href: "/colaboradores", label: "Colaboradores" },
-  { href: "/epi/entrega", label: "Entrega de EPI" },
-  { href: "/checklist", label: "Checklist" },
-  { href: "/incidentes", label: "Incidentes" },
-];
+import { NavLateral } from "./NavLateral";
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex min-h-screen">
-      <aside className="w-56 border-r border-gray-200 p-4">
-        <p className="font-semibold mb-6">SafeTrack EPI</p>
-        <nav className="flex flex-col gap-2">
-          {NAV_ITEMS.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-sm text-gray-600 hover:text-black hover:bg-gray-100 rounded px-2 py-1"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+    <div className="flex flex-col lg:flex-row min-h-screen">
+      <aside className="chassi lg:w-60 lg:shrink-0 flex flex-col">
+        <div className="p-4 lg:p-5 border-b border-carvao">
+          <Link href="/" className="letreiro text-base">
+            SafeTrack EPI
+          </Link>
+          <p className="etiqueta text-neblina mt-1">Painel de controle</p>
+        </div>
+
+        <div className="p-2 lg:p-3 flex-1">
+          <NavLateral />
+        </div>
+
+        <div className="hidden lg:block">
+          <div className="faixa-risco" />
+        </div>
       </aside>
-      <main className="flex-1 p-6">{children}</main>
+
+      <main className="flex-1 p-6 lg:p-10 max-w-6xl">{children}</main>
     </div>
   );
 }
