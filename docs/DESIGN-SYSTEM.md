@@ -96,6 +96,32 @@ Toda a ousadia do sistema está gasta aqui. O resto é disciplinado: sem
 gradientes, sem sombras difusas, sem cantos arredondados, sem animação
 decorativa.
 
+## Gráficos
+
+Um só, em `/relatorio`: incidentes por local, barras horizontais empilhadas por
+gravidade. As cores são a **status palette** (NBR), não categórica — por isso
+nunca aparecem como "série 4" em outro lugar.
+
+A separação sob daltonismo foi **computada, não estimada**: pior par adjacente
+(`#E8590C` ↔ `#FFC72C`) dá ΔE **26.4** em deuteranopia, bem acima do piso de 12.
+
+O amarelo de cuidado, porém, tem contraste de apenas **1.49:1** contra a
+superfície de aço. A cor é normativa e não pode ser trocada, então o contraste
+é compensado com relief obrigatório:
+
+- legenda rotulada (identidade nunca depende só da cor);
+- rótulo direto do total na ponta da barra — nunca um número por segmento;
+- **table view** (`<details>`), onde todo valor é legível como texto.
+
+Regras seguidas: gap de 2px na cor da superfície entre segmentos, **nunca uma
+borda em volta da marca**; marcas finas (16px); sem eixo duplo; sem gradiente.
+Cantos ficam retos, por coerência com o resto do sistema.
+
+Stat tiles usam a sans de corpo com figuras proporcionais no valor — display
+face e `tabular-nums` deixam um número grande e solto com espaçamento frouxo.
+O quadro DIAS SEM ACIDENTES é a exceção deliberada: lá os dígitos vivem em
+células alinhadas, onde `tabular-nums` é o certo.
+
 ## Acessibilidade
 
 - Foco visível em todo controle (`outline` azul de advertência; amarelo dentro

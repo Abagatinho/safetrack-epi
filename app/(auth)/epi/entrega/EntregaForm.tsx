@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Colaborador, TipoEPI, EntregaEPI } from "@/lib/types";
+import { QrCode } from "@/components/ui/QrCode";
 
 export function EntregaForm({
   colaboradores,
@@ -108,22 +109,12 @@ export function EntregaForm({
             <span className="etiqueta text-seguranca">Entrega registrada</span>
           </div>
 
-          <div className="w-40 h-40 bg-grafite mx-auto flex items-center justify-center p-3">
-            <div className="grid grid-cols-8 gap-px w-full h-full" aria-hidden="true">
-              {/* Marca ilustrativa. O QR real é gerado na versão de produção. */}
-              {Array.from({ length: 64 }).map((_, i) => (
-                <span
-                  key={i}
-                  className={
-                    (i * 7 + Math.floor(i / 8) * 3) % 5 < 2 ? "bg-aco" : "bg-transparent"
-                  }
-                />
-              ))}
-            </div>
+          <div className="flex justify-center">
+            <QrCode valor={confirmada.qrCodeValor} tamanho={160} />
           </div>
 
           <p className="dado mt-3">{confirmada.qrCodeValor}</p>
-          <p className="etiqueta mt-1">QR do equipamento · ilustrativo</p>
+          <p className="etiqueta mt-1">QR do equipamento</p>
           <p className="dado text-fumaca mt-4">Vence em {confirmada.dataValidade}</p>
         </div>
       )}

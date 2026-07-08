@@ -34,12 +34,9 @@ export function Card({
       <div className={`h-1 ${BARRA[tom]}`} />
       <div className="p-4">
         <p className="etiqueta">{title}</p>
-        <p
-          className={`letreiro text-4xl mt-2 ${VALOR[tom]}`}
-          style={{ fontVariantNumeric: "tabular-nums" }}
-        >
-          {value}
-        </p>
+        {/* Figura proporcional em sans de corpo: display face e tabular-nums
+            deixam um número solto com espaçamento frouxo em tamanho grande. */}
+        <p className={`text-4xl font-semibold mt-2 ${VALOR[tom]}`}>{value}</p>
         {subtitle && <p className="dado text-fumaca mt-2">{subtitle}</p>}
       </div>
     </div>

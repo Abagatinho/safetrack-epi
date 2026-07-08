@@ -7,8 +7,10 @@ const NAV_ITEMS = [
   { href: "/dashboard", label: "Dashboard" },
   { href: "/colaboradores", label: "Colaboradores" },
   { href: "/epi/entrega", label: "Entrega de EPI" },
+  { href: "/epi/catalogo", label: "Catálogo de EPI" },
   { href: "/checklist", label: "Checklist" },
   { href: "/incidentes", label: "Incidentes" },
+  { href: "/relatorio", label: "Relatório" },
 ];
 
 export function NavLateral() {

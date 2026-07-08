@@ -2,6 +2,7 @@ import Link from "next/link";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { Table } from "@/components/ui/Table";
 import { FaixaRisco } from "@/components/ui/FaixaRisco";
+import { BotaoDevolver } from "./BotaoDevolver";
 import type { Colaborador, EntregaEPI, TipoEPI, StatusEntrega } from "@/lib/types";
 import { apiFetch } from "@/lib/api";
 
@@ -68,16 +69,27 @@ export default async function ColaboradorDetalhePage({
           </Link>
         </div>
       ) : (
-        <Table headers={["Equipamento", "Entrega", "Validade", "Status"]}>
+        <Table headers={["Equipamento", "Entrega", "Validade", "Devolução", "Status", ""]}>
           {entregasDoColaborador.map((e) => {
             const tipo = tiposEpi.find((t) => t.id === e.tipoEpiId);
+            const devolvido = Boolean(e.dataDevolucao);
             return (
               <tr key={e.id} className="border-b border-traco last:border-0">
                 <td className="py-3 px-4 text-sm font-medium">{tipo?.nome}</td>
                 <td className="py-3 px-4 dado text-fumaca">{e.dataEntrega}</td>
                 <td className="py-3 px-4 dado text-fumaca">{e.dataValidade}</td>
+                <td className="py-3 px-4 dado text-fumaca">
+                  {e.dataDevolucao ?? <span className="etiqueta">Em uso</span>}
+                </td>
                 <td className="py-3 px-4">
-                  <StatusBadge status={e.status} />
+                  {devolvido ? (
+                    <span className="etiqueta">Devolvido</span>
+                  ) : (
+                    <StatusBadge status={e.status} />
+                  )}
+                </td>
+                <td className="py-3 px-4">
+                  {!devolvido && <BotaoDevolver entregaId={e.id} />}
                 </td>
               </tr>
             );
