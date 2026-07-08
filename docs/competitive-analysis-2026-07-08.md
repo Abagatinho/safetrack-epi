@@ -1,114 +1,151 @@
 # SafeTrack EPI — Análise de Concorrentes
 
-Data: 2026-07-08
+**Data:** 2026-07-08 · **Revisão 2** (substitui a primeira análise)
 
-## Contexto do produto
+## O que mudou desde a revisão 1
 
-SafeTrack EPI é protótipo comercial (sem back-end persistente) pra empresas
-terceirizadas que fornecem EPI e cuidam de segurança do trabalho pra
-indústrias. Unifica duas dores hoje resolvidas em papel ou sistemas
-separados: controle de entrega/validade de EPI e checklist/inspeção de
-segurança. Diferencial já assumido no design: "uma plataforma resolve as
-duas dores".
+A primeira análise citava BuscaEPI e EntregaEPI apenas na frase de contexto e na
+lista de fontes — nenhum dos dois tinha perfil próprio. Esta revisão investiga os
+dois a fundo e **corrige cinco afirmações erradas ou desatualizadas**:
 
-## Concorrentes pesquisados
+| # | Afirmação da revisão 1 | O que a pesquisa mostra |
+|---|---|---|
+| 1 | "Fluxo de assinatura via WhatsApp — argumento forte do EntregaEPI/ProSESMT" | **Não confirmado.** No site do EntregaEPI, o WhatsApp é apenas canal de contato comercial: `(47) 3029-2866`. O produto que anuncia WhatsApp no nome é outro — da **Dairiki**, vendido na loja da Senior. Não consegui abrir a página desse produto (HTTP 404) para verificar se o WhatsApp coleta assinatura ou só notifica. |
+| 2 | BuscaEPI listado como "especialista de EPI", junto de RS Data | BuscaEPI é uma **plataforma B2B de duas pontas** que conecta empresas compradoras a fornecedoras de EPI, com cotações abertas. É outra categoria: comércio, não só gestão. |
+| 3 | "Único no mercado pesquisado a unificar as duas dores" | **Exagerado.** O EntregaEPI já unifica EPI + treinamentos + documentos. O que é incomum na nossa combinação é EPI + treinamento NR + checklist de inspeção + incidente. |
+| 4 | Sugestões nº 1 (assinatura digital) e nº 3 (exportação PDF/Excel) | **Já implementadas.** Assinatura em canvas e exportação CSV/PDF estão no produto. |
+| 5 | "Assinatura digital real (canvas)" tratada como paridade com os concorrentes | **Não é paridade.** Canvas é assinatura eletrônica simples. Os concorrentes vendem *biometria* — que a NR-6 define como análise de característica física (digital, facial, íris). São coisas juridicamente diferentes. |
 
-Mercado brasileiro de software de EPI e SST tem dois clusters:
+## O terreno legal (verificado no texto da norma)
 
-- **Especialistas em EPI**: BuscaEPI, EntregaEPI, RS Data, ProSESMT, Nortel,
-  Prolaborar — todos focam só em ficha de entrega/validade de EPI.
-- **Especialistas em checklist/inspeção SST**: Checklist Fácil, SULTS, ESST
-  Gestão — focam só em auditoria/checklist, não em EPI.
-- **Suítes SST completas (incumbentes grandes)**: SOC (23 anos de mercado,
-  ISO 27001, 300+ funcionalidades), Senior — fazem tudo (EPI + SST + exames
-  ocupacionais + eSocial), mas como parte de ERP grande e caro.
+Isto define o que o mercado vende, então vale citar exato. Da
+[Portaria MTP nº 2.175/2022](https://www.normaslegais.com.br/legislacao/portariamtp2175_2022.htm),
+que aprovou a atual NR-6 (vigente desde 05/02/2023):
 
-Nenhum concorrente pesquisado combina EPI + inspeção numa plataforma leve
-focada especificamente em terceirizadas — ou é especialista de nicho, ou é
-suíte enterprise completa.
+- **Item 6.5.1(d)** — o empregador deve *"registrar o seu fornecimento ao empregado,
+  podendo ser adotados livros, fichas ou sistema eletrônico, inclusive, por sistema
+  biométrico"*.
+- **Item 6.5.1.1** — *"O sistema eletrônico, para fins de registro de fornecimento de
+  EPI, caso seja adotado, deve permitir a extração de relatórios."*
+- **Glossário** — sistema biométrico é *"o sistema que analisa características físicas
+  para identificar de forma inequívoca um indivíduo, como por exemplo impressão
+  digital, reconhecimento facial e íris"*.
 
-Escolhidos pra aprofundar (maior presença de mercado / evidência concreta):
+Duas leituras para nós:
 
-1. **RS Data** (representando o cluster especialista em EPI — feature set
-   detalhado disponível, biometria + NR-06)
-2. **Checklist Fácil** (líder declarado de mercado na América Latina em
-   checklist/inspeção, 105 avaliações públicas no Capterra, nota 4.8/5)
+1. Nossa assinatura em canvas **é conforme** — a norma aceita "sistema eletrônico",
+   e a biometria entra como um *inclusive*, não como exigência.
+2. Nossa exportação CSV/PDF atende o item 6.5.1.1 **ao pé da letra**. É um argumento
+   de venda que não estávamos usando.
 
-SOC e BuscaEPI/EntregaEPI citados como contexto de mercado mas sem
-aprofundamento (dados de reviews/preço não públicos ou página não
-renderizou).
+Mas biometria é o que o mercado usa para vender "identificação inequívoca". Nesse
+eixo específico, estamos atrás.
 
-## 1. Nossos diferenciais
+## Nossos diferenciais
 
-- **Unificação EPI + inspeção numa dashboard só.** Nenhum concorrente
-  pesquisado faz isso de forma leve — é ou EPI-only (RS Data, BuscaEPI,
-  EntregaEPI) ou checklist-only (Checklist Fácil, SULTS), ou suíte pesada
-  tipo SOC/Senior.
-- **Foco de nicho em terceirizadas de EPI**, não em indústria direta ou
-  SESMT grande — incumbentes miram empresas maiores.
-- **Fricção comercial baixa**: demo funcional sem login, pronta pra mostrar
-  na conversa comercial. Concorrentes analisados (RS Data, SOC) escondem
-  tudo atrás de "solicitar orçamento" — sem demo aberta.
-- **Escopo enxuto**: onboarding rápido de mostrar, contra a complexidade de
-  SOC (300+ funcionalidades, ISO 27001/LGPD, integra exames ocupacionais e
-  eSocial) — sobra pra terceirizada pequena que só quer resolver EPI +
-  checklist.
+Cada um verificado contra o produto e contra a pesquisa:
 
-## 2. Diferenciais dos concorrentes
+- **QR que abre a ficha do equipamento no celular.** Escaneia o capacete, vê de quem
+  é, se venceu, quem assinou o recebimento. Nenhum dos concorrentes pesquisados
+  anuncia isso — eles usam código para identificar item em estoque, não como destino
+  navegável.
+- **Demo pública, sem login.** BuscaEPI ("Agende uma demonstração"), EntregaEPI e
+  RS Data escondem o produto atrás de formulário de contato. Nenhum publica preço.
+- **Exportação que atende o item 6.5.1.1 literalmente**, em CSV (Excel pt-BR) e PDF.
+- **EPI + treinamento NR + checklist + incidente num escopo enxuto.** O EntregaEPI
+  cobre EPI + treinamento + documentos, mas não inspeção de campo; o Checklist Fácil
+  cobre inspeção, mas não EPI.
 
-### RS Data (cluster EPI)
-- Assinatura **biométrica real** (digital) na entrega, não simulada —
-  elimina disputa jurídica sobre recebimento do EPI.
-- Vínculo EPI ↔ função/risco do cargo — sugere automaticamente qual EPI
-  cada função exige (compliance NR-06).
-- Modo offline pra entrega em campo sem internet.
-- Certificação ISO 27001/27701, criptografia — vende "segurança jurídica"
-  como argumento central.
+**Ressalva honesta:** somos um protótipo de validação. Em produção os dados vivem em
+memória e reiniciam a cada instância nova. Não somos, hoje, concorrente de nenhum
+produto abaixo — somos uma peça de conversa comercial.
 
-  Por que importa: reviews e marketing do setor (RS Data, EntregaEPI,
-  ProSESMT) tratam biometria/assinatura real como o principal argumento de
-  venda — é o que resolve a dor jurídica de "prova de entrega", não só a
-  dor operacional de controle de validade.
+## Concorrentes
 
-### Checklist Fácil (cluster inspeção)
-- Nota 4.8/5 em 105 avaliações no Capterra; "Inspection Management" avaliado
-  em 4.9/5.
-- **Plano de ação / correção de não-conformidade** vinculado ao item do
-  checklist (metodologia 5W2H, via parceiro SULTS) — fecha o ciclo
-  detectar→corrigir, não só registra.
-- Exportação real de relatório em PDF, dashboards em tempo real,
-  integração com Power BI.
-- Check-in geolocalizado em inspeções de campo.
-- Reclamações recorrentes: sincronização lenta em baixa conectividade,
-  pouca lógica condicional no checklist, suporte inconsistente.
+### BuscaEPI (SafetyTec) — marketplace + gestão
 
-  Por que importa: usuários claramente valorizam mais o *fechamento* do
-  problema (plano de ação) do que só a detecção — é o que Checklist Fácil
-  usa pra justificar preço em empresas maiores (40% enterprise, 38%
-  pequenas empresas segundo Capterra).
+Duas coisas num produto só:
 
-## 3. Sugestões priorizadas (impacto × esforço)
+- **Marketplace B2B de duas pontas:** empresas compradoras criam cotações de EPI e
+  recebem propostas de fornecedores. Existe uma página de "Cotações Abertas".
+  Autenticação compartilhada com o ConsultaCA.
+- **BuscaEPI Control:** gestão de cotações, estoque e entrega de EPI, uniformes, EPC,
+  ferramentas e MRO. Elimina a ficha de papel, alerta entregas pendentes e EPIs a
+  vencer, e emite relatórios de custo por setor, unidade e área.
 
-Ordenado por impacto/esforço, do mais óbvio pro mais custoso — considerando
-que o protótipo é Next.js sem back-end real (tudo mockável no client ou
-`db.json`).
+**Por que importa:** o nosso cliente-alvo (a terceirizada que fornece EPI) é
+justamente o *lado fornecedor* desse marketplace. O BuscaEPI não é só um concorrente
+— é um canal onde nosso cliente talvez já esteja.
+
+Sem preço público. O site é uma SPA que não renderiza sem JavaScript, o que limitou a
+leitura direta; o detalhamento de funcionalidades veio de fontes secundárias.
+
+### EntregaEPI — o concorrente mais direto
+
+Posicionamento: *"Automatize a gestão de EPIs e diga adeus ao papel"* — quase a nossa
+frase.
+
+- **Assinatura com biometria digital e facial**, além de senha, para conformidade com
+  a NR-6.
+- **Modo offline**, via app e web.
+- **Controle de estoque**, inclusive material em trânsito.
+- **Devolução obrigatória na troca** — o sistema exige a devolução do EPI antigo e
+  registra pendências.
+- **Gestão de treinamentos** (turmas, presença, feedback) e **de documentos**.
+- Azure, backups diários, aderência à LGPD. Cancelamento com 30 dias de aviso.
+- Clientes citados no site: TRG Pinturas, Tetra Tech, LAMB Engenharia.
+
+Sem preço público. Não encontrei avaliações independentes de usuários (as reclamações
+que aparecem em busca são de *lojas* de EPI, não da plataforma) — então não sei o que
+os usuários dele realmente elogiam ou criticam.
+
+### Checklist Fácil — líder da categoria vizinha
+
+4.8/5 em 105 avaliações no Capterra, 98% de sentimento positivo. Não faz EPI; é a
+referência do lado da inspeção.
+
+- **Elogiado por:** facilidade de uso e, sobretudo, evidência em foto e vídeo pelo
+  celular durante a inspeção.
+- **Criticado por:** atualizações lentas, lógica condicional limitada nos checklists,
+  gestão de usuários entre regiões, e relatórios/gráficos básicos comparados ao
+  Power BI.
+
+Preço não público; tem teste grátis.
+
+### RS Data, SOC, Senior
+
+Mantidos da revisão anterior como contexto de mercado, **sem reverificação nesta
+rodada**: RS Data vende biometria, offline e ISO 27001 no cluster de EPI; SOC e Senior
+são suítes enterprise que fazem EPI + SST + exames + eSocial. Trate essas afirmações
+como menos confiáveis que as acima.
+
+## Sugestões priorizadas
+
+Ordenadas por impacto sobre esforço. Esforço estimado contra o que o código já tem
+(Next.js, API mockada em `data/db.json`, canvas de assinatura, captura de foto).
 
 | # | Sugestão | Impacto | Esforço | Por quê |
-|---|----------|---------|---------|---------|
-| 1 | Assinatura digital real (canvas/touch) na entrega, em vez de simulada | Alto | Baixo | Argumento nº1 de venda no cluster EPI (RS Data, EntregaEPI, ProSESMT); só precisa lib de canvas client-side, sem back-end |
-| 2 | Vínculo EPI ↔ função/risco (sugestão automática do EPI certo por cargo) | Médio-Alto | Baixo | Diferencial de compliance NR-06 do RS Data; só adiciona campo no modelo de dado + seed |
-| 3 | Exportação real de PDF/Excel do relatório consolidado | Alto | Médio | Hoje é mockado no escopo; toda concorrência trata exportação como entregável de compliance esperado (jsPDF/exceljs client-side cabe no protótipo) |
-| 4 | Check-in geolocalizado no checklist de campo | Médio | Baixo-Médio | Feature destacada por SULTS/SOC; Geolocation API do navegador, fácil de mockar |
-| 5 | Plano de ação vinculado a não-conformidade do checklist (estilo 5W2H) | Alto | Médio | Diferencial mais citado do Checklist Fácil — fecha o ciclo detectar→corrigir, hoje ausente do escopo |
-| 6 | Fluxo de assinatura/notificação via WhatsApp (mockado pra demo) | Médio | Médio | Argumento de venda forte do EntregaEPI/ProSESMT pra reduzir fricção de campo; pode ser só mockup de UI no protótipo |
+|---|---|---|---|---|
+| 1 | **Foto do recebedor no ato da entrega** | Alto | Muito baixo | Já temos câmera (incidentes) e canvas (assinatura). Aproxima do "registro inequívoco" que a biometria vende — sem ser biometria, e dizendo isso com honestidade. |
+| 2 | **Publicar preço na landing** | Médio-alto | Trivial | Nenhum concorrente pesquisado publica preço. Posicionamento, não engenharia. |
+| 3 | **Vincular EPI a função/GHE e relatar por setor** | Médio-alto | Baixo | É o que o BuscaEPI Control vende (custo por setor, unidade, área). Um campo no modelo e um agrupamento no relatório. |
+| 4 | **Controle de estoque** | Alto | Médio | BuscaEPI e EntregaEPI têm. Nosso cliente *distribui* EPI — hoje não sabe o que tem em mãos. Maior buraco funcional. |
+| 5 | **Bloquear troca sem devolução** | Médio | Baixo | Regra do EntregaEPI. A API de devolução já existe; falta a regra. |
+| 6 | **Plano de ação (5W2H) na não conformidade** | Médio-alto | Médio | Fecha o ciclo detectar → corrigir. O checklist hoje registra o "não" e para aí. |
+| 7 | **Alerta ativo (e-mail/WhatsApp)** | Alto | Alto | Hoje o alerta só existe se alguém abrir o painel. Exige backend real e agendador. |
+| 8 | **Modo offline (PWA)** | Alto | Alto | EntregaEPI e RS Data vendem isso; obra e mina não têm sinal. |
+| 9 | **Biometria facial na entrega** | Alto | Muito alto | Argumento jurídico central do cluster de EPI. Prevista na NR-6 desde 2023. |
+
+Os itens 7 e 8 pressupõem trocar `data/db.json` por um banco real — e, quando isso
+acontecer, deixa de ser protótipo.
 
 ## Fontes
 
-- [BuscaEPI](https://buscaepi.com/)
+- [BuscaEPI](https://buscaepi.com/) · [Cotações Abertas](https://buscaepi.com/cotacoes-abertas) · [Contato — "Agende uma demonstração"](https://buscaepi.com/contato/)
 - [EntregaEPI](https://entregaepi.com.br/)
+- [Portaria MTP nº 2.175, de 28/07/2022 — texto da NR-6](https://www.normaslegais.com.br/legislacao/portariamtp2175_2022.htm)
+- [Checklist Fácil — Capterra (4.8/5, 105 avaliações)](https://www.capterra.com/p/201781/Checklistfacil/)
+- [Checklist Fácil — SST e Meio Ambiente](https://checklistfacil.com/aplicacao/saude-seguranca-do-trabalho-e-meio-ambiente/)
 - [RS Data — Software de Gestão de EPI](https://www.rsdata.com.br/software-gestao-de-epi/)
-- [ProSESMT — Gestão de EPI](https://prosesmt.com.br/site/gestao-de-epi/)
 - [SOC — Checklist e Inspeções](https://www.soc.com.br/blog-de-sst/checklist-e-inspecoes-simplifique-sua-gestao-de-seguranca/)
-- [SULTS — Checklist de Segurança do Trabalho](https://www.sults.com.br/produtos/checklist/checklist-seguranca-trabalho)
-- [Checklist Fácil — Saúde, Segurança do Trabalho e Meio Ambiente](https://checklistfacil.com/aplicacao/saude-seguranca-do-trabalho-e-meio-ambiente/)
-- [Checklist Fácil — Capterra (preço/avaliações)](https://www.capterra.com/p/201781/Checklistfacil/)
+- [FichaEPI — biometria e app offline](https://fichaepi.com.br/) (HTTP 403 na leitura direta; citado a partir de resultados de busca)
