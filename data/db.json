@@ -334,5 +334,165 @@
       "gravidade": "grave",
       "descricao": "Queda de material de andaime, área isolada a tempo."
     }
+  ],
+  "treinamentos": [
+    {
+      "id": "nr-35",
+      "norma": "NR-35",
+      "nome": "Trabalho em altura",
+      "reciclagemMeses": 24
+    },
+    {
+      "id": "nr-33",
+      "norma": "NR-33",
+      "nome": "Espaço confinado",
+      "reciclagemMeses": 12
+    },
+    {
+      "id": "nr-10",
+      "norma": "NR-10",
+      "nome": "Segurança em instalações elétricas",
+      "reciclagemMeses": 24
+    },
+    {
+      "id": "nr-11",
+      "norma": "NR-11",
+      "nome": "Operação de empilhadeira",
+      "reciclagemMeses": 12
+    },
+    {
+      "id": "nr-12",
+      "norma": "NR-12",
+      "nome": "Segurança em máquinas e equipamentos",
+      "reciclagemMeses": 24
+    },
+    {
+      "id": "nr-06",
+      "norma": "NR-06",
+      "nome": "Uso correto de EPI",
+      "reciclagemMeses": 12
+    }
+  ],
+  "treinamentosRealizados": [
+    {
+      "id": "trn-1",
+      "colaboradorId": "col-1",
+      "treinamentoId": "nr-06",
+      "dataRealizacao": "2025-06-03",
+      "dataValidade": "2026-06-03",
+      "instrutor": "Ana Paula Souza"
+    },
+    {
+      "id": "trn-2",
+      "colaboradorId": "col-1",
+      "treinamentoId": "nr-12",
+      "dataRealizacao": "2025-09-11",
+      "dataValidade": "2027-09-11",
+      "instrutor": "Ana Paula Souza"
+    },
+    {
+      "id": "trn-3",
+      "colaboradorId": "col-2",
+      "treinamentoId": "nr-06",
+      "dataRealizacao": "2026-03-30",
+      "dataValidade": "2027-03-30",
+      "instrutor": "Ana Paula Souza"
+    },
+    {
+      "id": "trn-4",
+      "colaboradorId": "col-2",
+      "treinamentoId": "nr-33",
+      "dataRealizacao": "2025-07-23",
+      "dataValidade": "2026-07-23",
+      "instrutor": "Ana Paula Souza"
+    },
+    {
+      "id": "trn-5",
+      "colaboradorId": "col-3",
+      "treinamentoId": "nr-11",
+      "dataRealizacao": "2025-06-23",
+      "dataValidade": "2026-06-23",
+      "instrutor": "Ana Paula Souza"
+    },
+    {
+      "id": "trn-6",
+      "colaboradorId": "col-3",
+      "treinamentoId": "nr-06",
+      "dataRealizacao": "2026-05-09",
+      "dataValidade": "2027-05-09",
+      "instrutor": "Ana Paula Souza"
+    },
+    {
+      "id": "trn-7",
+      "colaboradorId": "col-4",
+      "treinamentoId": "nr-10",
+      "dataRealizacao": "2025-12-20",
+      "dataValidade": "2027-12-20",
+      "instrutor": "Ana Paula Souza"
+    },
+    {
+      "id": "trn-8",
+      "colaboradorId": "col-4",
+      "treinamentoId": "nr-06",
+      "dataRealizacao": "2026-06-08",
+      "dataValidade": "2027-06-08",
+      "instrutor": "Ana Paula Souza"
+    },
+    {
+      "id": "trn-9",
+      "colaboradorId": "col-5",
+      "treinamentoId": "nr-35",
+      "dataRealizacao": "2024-08-07",
+      "dataValidade": "2026-08-07",
+      "instrutor": "Ana Paula Souza"
+    },
+    {
+      "id": "trn-10",
+      "colaboradorId": "col-5",
+      "treinamentoId": "nr-06",
+      "dataRealizacao": "2025-08-02",
+      "dataValidade": "2026-08-02",
+      "instrutor": "Ana Paula Souza"
+    },
+    {
+      "id": "trn-11",
+      "colaboradorId": "col-6",
+      "treinamentoId": "nr-06",
+      "dataRealizacao": "2026-06-18",
+      "dataValidade": "2027-06-18",
+      "instrutor": "Ana Paula Souza"
+    },
+    {
+      "id": "trn-12",
+      "colaboradorId": "col-7",
+      "treinamentoId": "nr-35",
+      "dataRealizacao": "2025-06-03",
+      "dataValidade": "2027-06-03",
+      "instrutor": "Ana Paula Souza"
+    },
+    {
+      "id": "trn-13",
+      "colaboradorId": "col-7",
+      "treinamentoId": "nr-06",
+      "dataRealizacao": "2026-06-28",
+      "dataValidade": "2027-06-28",
+      "instrutor": "Ana Paula Souza"
+    },
+    {
+      "id": "trn-14",
+      "colaboradorId": "col-8",
+      "treinamentoId": "nr-12",
+      "dataRealizacao": "2025-02-23",
+      "dataValidade": "2027-02-23",
+      "instrutor": "Ana Paula Souza"
+    },
+    {
+      "id": "trn-15",
+      "colaboradorId": "col-8",
+      "treinamentoId": "nr-06",
+      "dataRealizacao": "2025-07-18",
+      "dataValidade": "2026-07-18",
+      "instrutor": "Ana Paula Souza"
+    }
   ]
 }

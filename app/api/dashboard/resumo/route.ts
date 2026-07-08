@@ -14,6 +14,15 @@ export async function GET() {
   const vencendo = entregasComStatus.filter((e) => e.status === "vencendo30d").length;
   const vencidos = entregasComStatus.filter((e) => e.status === "vencido").length;
 
+  const treinamentosComStatus = db.treinamentosRealizados.map((t) => ({
+    ...t,
+    status: calcularStatus(t.dataValidade, hoje),
+  }));
+  const treinamentosVencidos = treinamentosComStatus.filter((t) => t.status === "vencido").length;
+  const treinamentosVencendo = treinamentosComStatus.filter(
+    (t) => t.status === "vencendo30d"
+  ).length;
+
   const trintaDiasAtras = new Date(hoje);
   trintaDiasAtras.setDate(hoje.getDate() - 30);
   const incidentesUltimos30d = db.incidentes.filter(
@@ -34,5 +43,7 @@ export async function GET() {
     checklistsRegistrados: db.checklists.length,
     incidentesUltimos30d: incidentesUltimos30d.length,
     diasSemAcidente,
+    treinamentosVencidos,
+    treinamentosPendentes: treinamentosVencidos + treinamentosVencendo,
   });
 }

@@ -41,7 +41,7 @@ export default async function IncidentesPage() {
             </p>
           </div>
         ) : (
-          <Table headers={["Data", "Local", "Gravidade", "Descrição"]}>
+          <Table headers={["Data", "Local", "Gravidade", "Descrição", "Foto"]}>
             {ordenados.map((i) => (
               <tr key={i.id} className="border-b border-traco last:border-0">
                 <td className="py-3 px-4 dado text-fumaca whitespace-nowrap">{i.data}</td>
@@ -53,6 +53,18 @@ export default async function IncidentesPage() {
                   </span>
                 </td>
                 <td className="py-3 px-4 text-sm text-fumaca">{i.descricao}</td>
+                <td className="py-3 px-4">
+                  {i.fotoUrl ? (
+                    // eslint-disable-next-line @next/next/no-img-element -- data URI validado na API
+                    <img
+                      src={i.fotoUrl}
+                      alt={`Foto do incidente em ${i.local}`}
+                      className="w-16 h-16 object-cover border border-traco"
+                    />
+                  ) : (
+                    <span className="etiqueta">—</span>
+                  )}
+                </td>
               </tr>
             ))}
           </Table>

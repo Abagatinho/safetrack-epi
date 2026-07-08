@@ -1,6 +1,15 @@
 import { promises as fs } from "fs";
 import path from "path";
-import type { DB, Colaborador, TipoEPI, EntregaEPI, ChecklistDiario, Incidente } from "../lib/types";
+import type {
+  DB,
+  Colaborador,
+  TipoEPI,
+  EntregaEPI,
+  ChecklistDiario,
+  Incidente,
+  TreinamentoNR,
+  TreinamentoRealizado,
+} from "../lib/types";
 import { calcularDataValidade } from "../lib/status";
 
 const HOJE = "2026-07-08";
@@ -124,6 +133,51 @@ const incidentes: Incidente[] = [
   },
 ];
 
+const treinamentos: TreinamentoNR[] = [
+  { id: "nr-35", norma: "NR-35", nome: "Trabalho em altura", reciclagemMeses: 24 },
+  { id: "nr-33", norma: "NR-33", nome: "Espaço confinado", reciclagemMeses: 12 },
+  { id: "nr-10", norma: "NR-10", nome: "Segurança em instalações elétricas", reciclagemMeses: 24 },
+  { id: "nr-11", norma: "NR-11", nome: "Operação de empilhadeira", reciclagemMeses: 12 },
+  { id: "nr-12", norma: "NR-12", nome: "Segurança em máquinas e equipamentos", reciclagemMeses: 24 },
+  { id: "nr-06", norma: "NR-06", nome: "Uso correto de EPI", reciclagemMeses: 12 },
+];
+
+// Cada colaborador faz os treinamentos coerentes com a função. Os offsets
+// produzem de propósito uma mistura de vencido / vencendo / em dia.
+const MATRIZ: { colaboradorId: string; treinamentoId: string; offsetDias: number }[] = [
+  { colaboradorId: "col-1", treinamentoId: "nr-06", offsetDias: -400 }, // vencido
+  { colaboradorId: "col-1", treinamentoId: "nr-12", offsetDias: -300 },
+  { colaboradorId: "col-2", treinamentoId: "nr-06", offsetDias: -100 },
+  { colaboradorId: "col-2", treinamentoId: "nr-33", offsetDias: -350 }, // vencendo
+  { colaboradorId: "col-3", treinamentoId: "nr-11", offsetDias: -380 }, // vencido
+  { colaboradorId: "col-3", treinamentoId: "nr-06", offsetDias: -60 },
+  { colaboradorId: "col-4", treinamentoId: "nr-10", offsetDias: -200 },
+  { colaboradorId: "col-4", treinamentoId: "nr-06", offsetDias: -30 },
+  { colaboradorId: "col-5", treinamentoId: "nr-35", offsetDias: -700 }, // vencido
+  { colaboradorId: "col-5", treinamentoId: "nr-06", offsetDias: -340 }, // vencendo
+  { colaboradorId: "col-6", treinamentoId: "nr-06", offsetDias: -20 },
+  { colaboradorId: "col-7", treinamentoId: "nr-35", offsetDias: -400 },
+  { colaboradorId: "col-7", treinamentoId: "nr-06", offsetDias: -10 },
+  { colaboradorId: "col-8", treinamentoId: "nr-12", offsetDias: -500 },
+  { colaboradorId: "col-8", treinamentoId: "nr-06", offsetDias: -355 }, // vencendo
+];
+
+function gerarTreinamentosRealizados(): TreinamentoRealizado[] {
+  return MATRIZ.map((registro, i) => {
+    const treinamento = treinamentos.find((t) => t.id === registro.treinamentoId)!;
+    const dataRealizacao = addDias(HOJE, registro.offsetDias);
+
+    return {
+      id: `trn-${i + 1}`,
+      colaboradorId: registro.colaboradorId,
+      treinamentoId: registro.treinamentoId,
+      dataRealizacao,
+      dataValidade: calcularDataValidade(dataRealizacao, treinamento.reciclagemMeses),
+      instrutor: "Ana Paula Souza",
+    };
+  });
+}
+
 async function main() {
   const db: DB = {
     colaboradores,
@@ -131,6 +185,8 @@ async function main() {
     entregas: gerarEntregas(),
     checklists,
     incidentes,
+    treinamentos,
+    treinamentosRealizados: gerarTreinamentosRealizados(),
   };
 
   const dataDir = path.join(process.cwd(), "data");
@@ -140,7 +196,10 @@ async function main() {
     JSON.stringify(db, null, 2),
     "utf-8"
   );
-  console.log(`Seed gerado: ${db.entregas.length} entregas, ${db.checklists.length} checklists, ${db.incidentes.length} incidentes.`);
+  console.log(
+    `Seed gerado: ${db.entregas.length} entregas, ${db.checklists.length} checklists, ` +
+      `${db.incidentes.length} incidentes, ${db.treinamentosRealizados.length} treinamentos realizados.`
+  );
 }
 
 main();

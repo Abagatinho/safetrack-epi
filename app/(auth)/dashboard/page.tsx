@@ -10,6 +10,8 @@ type Resumo = {
   checklistsRegistrados: number;
   incidentesUltimos30d: number;
   diasSemAcidente: number | null;
+  treinamentosVencidos: number;
+  treinamentosPendentes: number;
 };
 
 async function getResumo() {
@@ -41,6 +43,18 @@ export default async function DashboardPage() {
             value={resumo.epiVencendo}
             tom={resumo.epiVencendo > 0 ? "cuidado" : "seguranca"}
             subtitle="Programar reposição"
+          />
+          <Card
+            title="Treinamentos pendentes"
+            value={resumo.treinamentosPendentes}
+            tom={
+              resumo.treinamentosVencidos > 0
+                ? "perigo"
+                : resumo.treinamentosPendentes > 0
+                  ? "cuidado"
+                  : "seguranca"
+            }
+            subtitle={`${resumo.treinamentosVencidos} vencidos`}
           />
           <Card title="Colaboradores" value={resumo.totalColaboradores} />
           <Card title="Checklists registrados" value={resumo.checklistsRegistrados} />

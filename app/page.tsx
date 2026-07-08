@@ -26,9 +26,14 @@ const CONTRASTE = [
     safetrack: "Local e gravidade no momento, contador zera",
   },
   {
+    tarefa: "Treinamento de NR",
+    papel: "Planilha que ninguém abre até a fiscalização chegar",
+    safetrack: "Reciclagem vencida aparece no painel",
+  },
+  {
     tarefa: "Auditoria",
     papel: "Caixa de papel, uma tarde procurando",
-    safetrack: "Histórico completo por colaborador",
+    safetrack: "Histórico por colaborador, exportado em CSV",
   },
 ];
 
@@ -66,8 +71,8 @@ export default async function LandingPage() {
               Agora ele se atualiza sozinho, a cada incidente registrado no chão de fábrica.
             </p>
             <p className="text-base text-fumaca max-w-md mb-10 leading-relaxed">
-              O SafeTrack acompanha validade de EPI, checklists de campo e incidentes. O que
-              estava no papel vira dado no mesmo instante.
+              O SafeTrack acompanha validade de EPI, treinamentos de NR, checklists de campo e
+              incidentes. O que estava no papel vira dado no mesmo instante.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">

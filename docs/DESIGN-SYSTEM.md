@@ -122,6 +122,13 @@ face e `tabular-nums` deixam um número grande e solto com espaçamento frouxo.
 O quadro DIAS SEM ACIDENTES é a exceção deliberada: lá os dígitos vivem em
 células alinhadas, onde `tabular-nums` é o certo.
 
+## Impressão
+
+"Salvar PDF" chama `window.print()`. O papel não leva navegação, chassi escuro
+nem sombra — `@media print` remove tudo isso. Um `<details>` fechado não é
+aberto por CSS, então um listener de `beforeprint` abre a table view do gráfico
+antes de imprimir e a fecha depois (funciona também com Ctrl+P).
+
 ## Acessibilidade
 
 - Foco visível em todo controle (`outline` azul de advertência; amarelo dentro

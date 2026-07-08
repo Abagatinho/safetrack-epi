@@ -8,6 +8,7 @@ const NAV_ITEMS = [
   { href: "/colaboradores", label: "Colaboradores" },
   { href: "/epi/entrega", label: "Entrega de EPI" },
   { href: "/epi/catalogo", label: "Catálogo de EPI" },
+  { href: "/treinamentos", label: "Treinamentos" },
   { href: "/checklist", label: "Checklist" },
   { href: "/incidentes", label: "Incidentes" },
   { href: "/relatorio", label: "Relatório" },

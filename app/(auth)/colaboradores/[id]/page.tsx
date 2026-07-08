@@ -3,20 +3,32 @@ import { StatusBadge } from "@/components/ui/StatusBadge";
 import { Table } from "@/components/ui/Table";
 import { FaixaRisco } from "@/components/ui/FaixaRisco";
 import { BotaoDevolver } from "./BotaoDevolver";
-import type { Colaborador, EntregaEPI, TipoEPI, StatusEntrega } from "@/lib/types";
+import type {
+  Colaborador,
+  EntregaEPI,
+  TipoEPI,
+  StatusEntrega,
+  TreinamentoNR,
+  TreinamentoRealizado,
+} from "@/lib/types";
 import { apiFetch } from "@/lib/api";
 
 async function getDados(id: string) {
-  const [colaboradores, entregas, tiposEpi] = await Promise.all([
+  const [colaboradores, entregas, tiposEpi, treinamentos, realizados] = await Promise.all([
     apiFetch<Colaborador[]>("/api/colaboradores"),
     apiFetch<(EntregaEPI & { status: StatusEntrega })[]>("/api/entregas"),
     apiFetch<TipoEPI[]>("/api/tipos-epi"),
+    apiFetch<TreinamentoNR[]>("/api/treinamentos"),
+    apiFetch<(TreinamentoRealizado & { status: StatusEntrega })[]>(
+      "/api/treinamentos-realizados"
+    ),
   ]);
 
   const colaborador = colaboradores.find((c) => c.id === id);
   const entregasDoColaborador = entregas.filter((e) => e.colaboradorId === id);
+  const treinamentosDoColaborador = realizados.filter((t) => t.colaboradorId === id);
 
-  return { colaborador, entregasDoColaborador, tiposEpi };
+  return { colaborador, entregasDoColaborador, tiposEpi, treinamentos, treinamentosDoColaborador };
 }
 
 export default async function ColaboradorDetalhePage({
@@ -25,7 +37,8 @@ export default async function ColaboradorDetalhePage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const { colaborador, entregasDoColaborador, tiposEpi } = await getDados(id);
+  const { colaborador, entregasDoColaborador, tiposEpi, treinamentos, treinamentosDoColaborador } =
+    await getDados(id);
 
   if (!colaborador) {
     return (
@@ -59,6 +72,7 @@ export default async function ColaboradorDetalhePage({
 
       <p className="etiqueta mb-3">Ficha de entrega de EPI</p>
 
+
       {entregasDoColaborador.length === 0 ? (
         <div className="placa p-8 text-center">
           <p className="text-sm text-fumaca mb-6">
@@ -90,6 +104,36 @@ export default async function ColaboradorDetalhePage({
                 </td>
                 <td className="py-3 px-4">
                   {!devolvido && <BotaoDevolver entregaId={e.id} />}
+                </td>
+              </tr>
+            );
+          })}
+        </Table>
+      )}
+
+      <p className="etiqueta mt-10 mb-3">Treinamentos obrigatórios</p>
+
+      {treinamentosDoColaborador.length === 0 ? (
+        <div className="placa p-8 text-center">
+          <p className="text-sm text-fumaca mb-6">
+            Nenhum treinamento registrado para {colaborador.nome.split(" ")[0]}.
+          </p>
+          <Link href="/treinamentos" className="botao inline-block">
+            Registrar treinamento
+          </Link>
+        </div>
+      ) : (
+        <Table headers={["Norma", "Treinamento", "Realizado", "Válido até", "Status"]}>
+          {treinamentosDoColaborador.map((t) => {
+            const nr = treinamentos.find((n) => n.id === t.treinamentoId);
+            return (
+              <tr key={t.id} className="border-b border-traco last:border-0">
+                <td className="py-3 px-4 dado whitespace-nowrap">{nr?.norma}</td>
+                <td className="py-3 px-4 text-sm font-medium">{nr?.nome}</td>
+                <td className="py-3 px-4 dado text-fumaca">{t.dataRealizacao}</td>
+                <td className="py-3 px-4 dado text-fumaca">{t.dataValidade}</td>
+                <td className="py-3 px-4">
+                  <StatusBadge status={t.status} />
                 </td>
               </tr>
             );

@@ -93,6 +93,39 @@
       transition-duration: 0.01ms !important;
     }
   }
+
+  /* "Salvar PDF" imprime a página. O papel não leva navegação, chassi escuro
+     nem sombra — só o conteúdo do relatório. */
+  @media print {
+    body {
+      background: #fff;
+    }
+
+    aside,
+    nav {
+      display: none !important;
+    }
+
+    main {
+      padding: 0 !important;
+      max-width: none !important;
+    }
+
+    .placa {
+      box-shadow: none;
+      break-inside: avoid;
+    }
+
+    /* A tabela do gráfico é aberta por JS antes de imprimir (o CSS não abre um
+       <details> fechado). No papel, o "Ver dados em tabela" não faz sentido. */
+    details > summary {
+      display: none;
+    }
+
+    section {
+      break-inside: avoid;
+    }
+  }
 }
 
 @layer components {

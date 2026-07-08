@@ -3,20 +3,23 @@ import Link from "next/link";
 /**
  * Faixa de sinalização hachurada. Não é ornamento: só é renderizada quando
  * existe risco ativo. Ausente, comunica tanto quanto presente.
+ *
+ * O texto padrão fala de EPI vencido; `texto` cobre os outros riscos
+ * (treinamento vencido, por exemplo) sem duplicar o markup da faixa.
  */
 export function FaixaRisco({
   quantidade,
   href,
+  texto,
 }: {
   quantidade: number;
   href?: string;
+  texto?: (quantidade: number) => string;
 }) {
   if (quantidade === 0) return null;
 
-  const texto =
-    quantidade === 1
-      ? "1 EPI vencido aguardando troca"
-      : `${quantidade} EPIs vencidos aguardando troca`;
+  const padrao = (n: number) =>
+    n === 1 ? "1 EPI vencido aguardando troca" : `${n} EPIs vencidos aguardando troca`;
 
   const conteudo = (
     <>
@@ -26,7 +29,7 @@ export function FaixaRisco({
           <circle cx="8" cy="11.6" r="1.1" fill="currentColor" />
         </svg>
       </span>
-      <span className="letreiro text-sm tracking-wide">{texto}</span>
+      <span className="letreiro text-sm tracking-wide">{(texto ?? padrao)(quantidade)}</span>
       {href && <span className="etiqueta text-neblina ml-auto">Ver lista →</span>}
     </>
   );

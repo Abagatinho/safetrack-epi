@@ -2,10 +2,16 @@
 
 import { useEffect, useState } from "react";
 
+const DURACAO_MS = 900;
+
 /**
  * Elemento-assinatura: o quadro que toda fábrica tem na parede, com os dígitos
  * trocados à mão. Aqui ele se atualiza sozinho. Conta na carga da página,
  * respeitando prefers-reduced-motion.
+ *
+ * `animado` é null fora da animação, e então o valor exibido é a prop. Assim o
+ * SSR já sai com o número certo, e um `dias` novo (após router.refresh) nunca
+ * fica preso num estado inicial obsoleto.
  */
 export function QuadroDiasSemAcidente({
   dias,
@@ -14,25 +20,25 @@ export function QuadroDiasSemAcidente({
   dias: number;
   tamanho?: "grande" | "compacto";
 }) {
-  const [exibido, setExibido] = useState(dias);
+  const [animado, setAnimado] = useState<number | null>(null);
+  const exibido = animado ?? dias;
 
   useEffect(() => {
     const reduzido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduzido || dias === 0) {
-      setExibido(dias);
-      return;
-    }
+    if (reduzido || dias === 0) return;
 
-    setExibido(0);
-    const duracao = 900;
-    const inicio = performance.now();
     let frame = 0;
+    let inicio = 0;
 
     function passo(agora: number) {
-      const t = Math.min((agora - inicio) / duracao, 1);
+      if (!inicio) inicio = agora;
+
+      const t = Math.min((agora - inicio) / DURACAO_MS, 1);
       const suave = 1 - Math.pow(1 - t, 3);
-      setExibido(Math.round(suave * dias));
+      setAnimado(Math.round(suave * dias));
+
       if (t < 1) frame = requestAnimationFrame(passo);
+      else setAnimado(null); // devolve o controle à prop
     }
 
     frame = requestAnimationFrame(passo);
