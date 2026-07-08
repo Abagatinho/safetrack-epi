@@ -1,10 +1,10 @@
 import { IncidenteForm } from "./IncidenteForm";
 import { Table } from "@/components/ui/Table";
 import type { Incidente } from "@/lib/types";
+import { apiFetch } from "@/lib/api";
 
 async function getIncidentes(): Promise<Incidente[]> {
-  const res = await fetch("http://localhost:3000/api/incidentes", { cache: "no-store" });
-  return res.json();
+  return apiFetch<Incidente[]>("/api/incidentes");
 }
 
 export default async function IncidentesPage() {

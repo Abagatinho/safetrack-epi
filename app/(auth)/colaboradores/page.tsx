@@ -2,12 +2,10 @@ import Link from "next/link";
 import { Table } from "@/components/ui/Table";
 import { NovoColaboradorForm } from "./NovoColaboradorForm";
 import type { Colaborador } from "@/lib/types";
+import { apiFetch } from "@/lib/api";
 
 async function getColaboradores(): Promise<Colaborador[]> {
-  const res = await fetch("http://localhost:3000/api/colaboradores", {
-    cache: "no-store",
-  });
-  return res.json();
+  return apiFetch<Colaborador[]>("/api/colaboradores");
 }
 
 export default async function ColaboradoresPage() {

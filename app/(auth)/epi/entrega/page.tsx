@@ -1,10 +1,11 @@
 import { EntregaForm } from "./EntregaForm";
 import type { Colaborador, TipoEPI } from "@/lib/types";
+import { apiFetch } from "@/lib/api";
 
 async function getListas() {
-  const [colaboradores, tiposEpi]: [Colaborador[], TipoEPI[]] = await Promise.all([
-    fetch("http://localhost:3000/api/colaboradores", { cache: "no-store" }).then((r) => r.json()),
-    fetch("http://localhost:3000/api/tipos-epi", { cache: "no-store" }).then((r) => r.json()),
+  const [colaboradores, tiposEpi] = await Promise.all([
+    apiFetch<Colaborador[]>("/api/colaboradores"),
+    apiFetch<TipoEPI[]>("/api/tipos-epi"),
   ]);
   return { colaboradores, tiposEpi };
 }

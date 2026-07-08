@@ -1,14 +1,14 @@
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { Table } from "@/components/ui/Table";
 import type { Colaborador, EntregaEPI, TipoEPI, StatusEntrega } from "@/lib/types";
+import { apiFetch } from "@/lib/api";
 
 async function getDados(id: string) {
-  const [colaboradores, entregas, tiposEpi]: [Colaborador[], (EntregaEPI & { status: StatusEntrega })[], TipoEPI[]] =
-    await Promise.all([
-      fetch("http://localhost:3000/api/colaboradores", { cache: "no-store" }).then((r) => r.json()),
-      fetch("http://localhost:3000/api/entregas", { cache: "no-store" }).then((r) => r.json()),
-      fetch("http://localhost:3000/api/tipos-epi", { cache: "no-store" }).then((r) => r.json()),
-    ]);
+  const [colaboradores, entregas, tiposEpi] = await Promise.all([
+    apiFetch<Colaborador[]>("/api/colaboradores"),
+    apiFetch<(EntregaEPI & { status: StatusEntrega })[]>("/api/entregas"),
+    apiFetch<TipoEPI[]>("/api/tipos-epi"),
+  ]);
 
   const colaborador = colaboradores.find((c) => c.id === id);
   const entregasDoColaborador = entregas.filter((e) => e.colaboradorId === id);

@@ -1,10 +1,17 @@
 import { Card } from "@/components/ui/Card";
+import { apiFetch } from "@/lib/api";
+
+type Resumo = {
+  totalColaboradores: number;
+  epiVencendo: number;
+  epiVencido: number;
+  checklistsRegistrados: number;
+  incidentesUltimos30d: number;
+  diasSemAcidente: number | null;
+};
 
 async function getResumo() {
-  const res = await fetch("http://localhost:3000/api/dashboard/resumo", {
-    cache: "no-store",
-  });
-  return res.json();
+  return apiFetch<Resumo>("/api/dashboard/resumo");
 }
 
 export default async function DashboardPage() {
