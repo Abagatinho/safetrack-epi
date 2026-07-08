@@ -146,11 +146,19 @@ Sem autenticação funcional, sem multi-tenant nesta fase.
 
 ## Deploy
 
-Vercel (free tier) — Next.js nativo. Aviso: `data/db.json` escrito em
-runtime NÃO persiste em produção na Vercel (filesystem read-only/efêmero em
-serverless) — cada deploy/restart volta pro seed, o que é aceitável (e até
-desejável) pra demo comercial: sempre limpo pra próxima conversa. Pra
-persistência entre sessões de demo, rodar local (`npm run dev`).
+Vercel (free tier) — Next.js nativo.
+
+O filesystem de uma função serverless é somente leitura, então `writeDB`
+escreve no arquivo quando dá (local) e cai para um store em memória quando o
+disco recusa (`EROFS`/`EACCES`/`EPERM`). Consequência prática:
+
+- **Local (`npm run dev`)**: tudo persiste em `data/db.json` entre reinícios.
+- **Produção**: cadastros funcionam e valem enquanto a instância viver. Uma
+  instância nova (cold start, novo deploy) recomeça do seed — o que é aceitável,
+  e até desejável, para uma demo comercial: sempre limpa para a próxima conversa.
+
+Antes dessa correção, todo POST em produção retornava 500 e a URL pública era
+uma vitrine que não deixava cadastrar nada.
 
 ## Próximos passos após validação
 
