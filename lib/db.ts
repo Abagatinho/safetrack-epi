@@ -15,40 +15,40 @@ const DB_PATH = path.join(process.cwd(), "data", "db.json");
  * dados vivem enquanto a instância viver — o suficiente para uma demo ao vivo,
  * e a instância seguinte simplesmente recomeça do seed.
  */
-let memoria: DB | null = null;
-let discoSomenteLeitura = false;
+let memory: DB | null = null;
+let diskIsReadOnly = false;
 
-function clonarSeed(): DB {
+function cloneSeed(): DB {
   return structuredClone(seed) as DB;
 }
 
 export async function readDB(): Promise<DB> {
   // Depois que o disco recusou uma escrita, a verdade está na memória.
-  if (discoSomenteLeitura && memoria) return memoria;
+  if (diskIsReadOnly && memory) return memory;
 
   try {
     const raw = await fs.readFile(DB_PATH, "utf-8");
     return JSON.parse(raw) as DB;
   } catch {
     // O arquivo pode não ter sido incluído no bundle. O seed importado sim.
-    memoria ??= clonarSeed();
-    return memoria;
+    memory ??= cloneSeed();
+    return memory;
   }
 }
 
 export async function writeDB(db: DB): Promise<void> {
-  if (discoSomenteLeitura) {
-    memoria = db;
+  if (diskIsReadOnly) {
+    memory = db;
     return;
   }
 
   try {
     await fs.writeFile(DB_PATH, JSON.stringify(db, null, 2), "utf-8");
-  } catch (erro) {
-    const codigo = (erro as NodeJS.ErrnoException).code;
-    if (codigo !== "EROFS" && codigo !== "EACCES" && codigo !== "EPERM") throw erro;
+  } catch (error) {
+    const code = (error as NodeJS.ErrnoException).code;
+    if (code !== "EROFS" && code !== "EACCES" && code !== "EPERM") throw error;
 
-    discoSomenteLeitura = true;
-    memoria = db;
+    diskIsReadOnly = true;
+    memory = db;
   }
 }

@@ -1,59 +1,59 @@
 import Link from "next/link";
 import { apiFetch } from "@/lib/api";
-import { QuadroDiasSemAcidente } from "@/components/ui/QuadroDiasSemAcidente";
+import { DaysWithoutAccidentBoard } from "@/components/ui/DaysWithoutAccidentBoard";
 
-type Resumo = {
-  totalColaboradores: number;
-  epiVencendo: number;
-  epiVencido: number;
-  diasSemAcidente: number | null;
+type Summary = {
+  totalEmployees: number;
+  ppeExpiringSoon: number;
+  ppeExpired: number;
+  daysWithoutAccident: number | null;
 };
 
-const CONTRASTE = [
+const CONTRAST = [
   {
-    tarefa: "Validade do EPI",
-    papel: "Anotada numa ficha guardada na gaveta",
+    task: "Validade do EPI",
+    paper: "Anotada numa ficha guardada na gaveta",
     safetrack: "Alerta na tela 30 dias antes de vencer",
   },
   {
-    tarefa: "Checklist de campo",
-    papel: "Prancheta no setor, digitação no dia seguinte",
+    task: "Checklist de campo",
+    paper: "Prancheta no setor, digitação no dia seguinte",
     safetrack: "Preenchido no celular, indicador sobe na hora",
   },
   {
-    tarefa: "Registro de incidente",
-    papel: "Relatório manuscrito, análise semanas depois",
+    task: "Registro de incidente",
+    paper: "Relatório manuscrito, análise semanas depois",
     safetrack: "Local e gravidade no momento, contador zera",
   },
   {
-    tarefa: "Treinamento de NR",
-    papel: "Planilha que ninguém abre até a fiscalização chegar",
+    task: "Treinamento de NR",
+    paper: "Planilha que ninguém abre até a fiscalização chegar",
     safetrack: "Reciclagem vencida aparece no painel",
   },
   {
-    tarefa: "Auditoria",
-    papel: "Caixa de papel, uma tarde procurando",
+    task: "Auditoria",
+    paper: "Caixa de papel, uma tarde procurando",
     safetrack: "Histórico por colaborador, exportado em CSV",
   },
 ];
 
-const NORMA = [
-  { cor: "bg-seguranca", nome: "Verde", uso: "Segurança" },
-  { cor: "bg-cuidado", nome: "Amarelo", uso: "Cuidado" },
-  { cor: "bg-perigo", nome: "Vermelho", uso: "Perigo" },
-  { cor: "bg-advertencia", nome: "Azul", uso: "EPI obrigatório" },
+const STANDARD = [
+  { color: "bg-safety", name: "Verde", use: "Segurança" },
+  { color: "bg-caution", name: "Amarelo", use: "Cuidado" },
+  { color: "bg-danger", name: "Vermelho", use: "Perigo" },
+  { color: "bg-mandatory", name: "Azul", use: "EPI obrigatório" },
 ];
 
 export default async function LandingPage() {
-  const resumo = await apiFetch<Resumo>("/api/dashboard/resumo");
-  const dias = resumo.diasSemAcidente ?? 0;
+  const summary = await apiFetch<Summary>("/api/dashboard/summary");
+  const days = summary.daysWithoutAccident ?? 0;
 
   return (
     <div className="flex flex-col flex-1">
-      <header className="border-b border-traco">
+      <header className="border-b border-rule">
         <div className="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
-          <span className="letreiro text-lg">SafeTrack EPI</span>
-          <span className="etiqueta hidden sm:block">Gestão de EPI e segurança do trabalho</span>
+          <span className="signage text-lg">SafeTrack EPI</span>
+          <span className="label hidden sm:block">Gestão de EPI e segurança do trabalho</span>
         </div>
       </header>
 
@@ -61,60 +61,60 @@ export default async function LandingPage() {
         {/* Hero: o objeto que esta plataforma substitui. */}
         <section className="mx-auto max-w-6xl px-6 py-16 sm:py-24 grid lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-16 items-center">
           <div>
-            <p className="etiqueta mb-6">Para empresas que fornecem EPI à indústria</p>
-            <h1 className="letreiro text-4xl sm:text-6xl mb-6">
+            <p className="label mb-6">Para empresas que fornecem EPI à indústria</p>
+            <h1 className="signage text-4xl sm:text-6xl mb-6">
               Esse número era
               <br />
               escrito à mão.
             </h1>
-            <p className="text-lg text-fumaca max-w-md mb-4 leading-relaxed">
+            <p className="text-lg text-smoke max-w-md mb-4 leading-relaxed">
               Agora ele se atualiza sozinho, a cada incidente registrado no chão de fábrica.
             </p>
-            <p className="text-base text-fumaca max-w-md mb-10 leading-relaxed">
+            <p className="text-base text-smoke max-w-md mb-10 leading-relaxed">
               O SafeTrack acompanha validade de EPI, treinamentos de NR, checklists de campo e
               incidentes. O que estava no papel vira dado no mesmo instante.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
-              <Link href="/dashboard" className="botao botao-campo inline-block">
+              <Link href="/dashboard" className="button button-heavy inline-block">
                 Ver demonstração
               </Link>
-              <p className="dado text-fumaca">
-                {resumo.totalColaboradores} colaboradores · {resumo.epiVencido} EPIs vencidos
+              <p className="data text-smoke">
+                {summary.totalEmployees} colaboradores · {summary.ppeExpired} EPIs vencidos
               </p>
             </div>
           </div>
 
           <div className="lg:rotate-[-1.5deg] lg:justify-self-end w-full max-w-sm mx-auto lg:mx-0">
-            <QuadroDiasSemAcidente dias={dias} />
+            <DaysWithoutAccidentBoard days={days} />
           </div>
         </section>
 
         {/* A comparação é o conteúdo. Duas colunas porque há duas realidades. */}
-        <section className="border-y border-traco bg-aco">
+        <section className="border-y border-rule bg-steel">
           <div className="mx-auto max-w-6xl px-6 py-16">
-            <h2 className="letreiro text-2xl sm:text-3xl mb-10">O que muda no dia a dia</h2>
+            <h2 className="signage text-2xl sm:text-3xl mb-10">O que muda no dia a dia</h2>
 
-            <div className="grid gap-px bg-traco border border-traco">
-              <div className="hidden sm:grid grid-cols-[1fr_1.2fr_1.2fr] gap-px bg-traco">
-                <div className="bg-concreto px-4 py-3 etiqueta">Tarefa</div>
-                <div className="bg-concreto px-4 py-3 etiqueta">No papel</div>
-                <div className="bg-concreto px-4 py-3 etiqueta text-seguranca">No SafeTrack</div>
+            <div className="grid gap-px bg-rule border border-rule">
+              <div className="hidden sm:grid grid-cols-[1fr_1.2fr_1.2fr] gap-px bg-rule">
+                <div className="bg-concrete px-4 py-3 label">Tarefa</div>
+                <div className="bg-concrete px-4 py-3 label">No papel</div>
+                <div className="bg-concrete px-4 py-3 label text-safety">No SafeTrack</div>
               </div>
 
-              {CONTRASTE.map((linha) => (
+              {CONTRAST.map((row) => (
                 <div
-                  key={linha.tarefa}
-                  className="grid sm:grid-cols-[1fr_1.2fr_1.2fr] gap-px bg-traco"
+                  key={row.task}
+                  className="grid sm:grid-cols-[1fr_1.2fr_1.2fr] gap-px bg-rule"
                 >
-                  <div className="bg-aco px-4 py-4">
-                    <span className="letreiro text-sm">{linha.tarefa}</span>
+                  <div className="bg-steel px-4 py-4">
+                    <span className="signage text-sm">{row.task}</span>
                   </div>
-                  <div className="bg-aco px-4 py-4 text-sm text-fumaca line-through decoration-perigo decoration-1">
-                    {linha.papel}
+                  <div className="bg-steel px-4 py-4 text-sm text-smoke line-through decoration-danger decoration-1">
+                    {row.paper}
                   </div>
-                  <div className="bg-aco px-4 py-4 text-sm text-grafite border-l-2 border-l-seguranca sm:border-l-2">
-                    {linha.safetrack}
+                  <div className="bg-steel px-4 py-4 text-sm text-graphite border-l-2 border-l-safety sm:border-l-2">
+                    {row.safetrack}
                   </div>
                 </div>
               ))}
@@ -126,21 +126,21 @@ export default async function LandingPage() {
         <section className="mx-auto max-w-6xl px-6 py-16">
           <div className="grid sm:grid-cols-[1fr_1.4fr] gap-10">
             <div>
-              <h2 className="letreiro text-2xl mb-4">As cores já são norma</h2>
-              <p className="text-sm text-fumaca leading-relaxed">
+              <h2 className="signage text-2xl mb-4">As cores já são norma</h2>
+              <p className="text-sm text-smoke leading-relaxed">
                 O sistema não inventa um código visual. Ele usa o que a NBR 7195 já determina
                 para a segurança do trabalho — o mesmo código que está pintado no chão e nas
                 máquinas da indústria.
               </p>
             </div>
 
-            <dl className="grid grid-cols-2 gap-px bg-traco border border-traco self-start">
-              {NORMA.map((c) => (
-                <div key={c.nome} className="bg-aco p-4 flex items-center gap-3">
-                  <span className={`w-8 h-8 ${c.cor} border border-grafite/20`} aria-hidden="true" />
+            <dl className="grid grid-cols-2 gap-px bg-rule border border-rule self-start">
+              {STANDARD.map((c) => (
+                <div key={c.name} className="bg-steel p-4 flex items-center gap-3">
+                  <span className={`w-8 h-8 ${c.color} border border-graphite/20`} aria-hidden="true" />
                   <div>
-                    <dt className="letreiro text-xs">{c.nome}</dt>
-                    <dd className="etiqueta">{c.uso}</dd>
+                    <dt className="signage text-xs">{c.name}</dt>
+                    <dd className="label">{c.use}</dd>
                   </div>
                 </div>
               ))}
@@ -149,11 +149,11 @@ export default async function LandingPage() {
         </section>
       </main>
 
-      <footer className="chassi">
-        <div className="faixa-risco" />
+      <footer className="chassis">
+        <div className="risk-stripe" />
         <div className="mx-auto max-w-6xl px-6 py-8 flex flex-wrap items-center justify-between gap-4">
-          <span className="letreiro text-sm">SafeTrack EPI</span>
-          <span className="etiqueta">Protótipo de demonstração · dados fictícios</span>
+          <span className="signage text-sm">SafeTrack EPI</span>
+          <span className="label">Protótipo de demonstração · dados fictícios</span>
         </div>
       </footer>
     </div>

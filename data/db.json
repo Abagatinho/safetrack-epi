@@ -1,498 +1,1220 @@
 {
-  "colaboradores": [
+  "employees": [
     {
-      "id": "col-1",
-      "nome": "Marcos Silva",
-      "funcao": "Soldador",
-      "empresaCliente": "Metalúrgica Recife"
+      "id": "emp-1",
+      "name": "Marcos Silva",
+      "jobTitle": "Soldador",
+      "clientCompany": "Metalúrgica Recife"
     },
     {
-      "id": "col-2",
-      "nome": "Ana Paula Souza",
-      "funcao": "Técnica de Segurança",
-      "empresaCliente": "Metalúrgica Recife"
+      "id": "emp-2",
+      "name": "Ana Paula Souza",
+      "jobTitle": "Técnica de Segurança",
+      "clientCompany": "Metalúrgica Recife"
     },
     {
-      "id": "col-3",
-      "nome": "João Pedro Lima",
-      "funcao": "Operador de Empilhadeira",
-      "empresaCliente": "Logística Nordeste"
+      "id": "emp-3",
+      "name": "João Pedro Lima",
+      "jobTitle": "Operador de Empilhadeira",
+      "clientCompany": "Logística Nordeste"
     },
     {
-      "id": "col-4",
-      "nome": "Carla Mendes",
-      "funcao": "Eletricista",
-      "empresaCliente": "Metalúrgica Recife"
+      "id": "emp-4",
+      "name": "Carla Mendes",
+      "jobTitle": "Eletricista",
+      "clientCompany": "Metalúrgica Recife"
     },
     {
-      "id": "col-5",
-      "nome": "Rafael Torres",
-      "funcao": "Pedreiro",
-      "empresaCliente": "Construtora Atlântico"
+      "id": "emp-5",
+      "name": "Rafael Torres",
+      "jobTitle": "Pedreiro",
+      "clientCompany": "Construtora Atlântico"
     },
     {
-      "id": "col-6",
-      "nome": "Beatriz Costa",
-      "funcao": "Auxiliar de Produção",
-      "empresaCliente": "Logística Nordeste"
+      "id": "emp-6",
+      "name": "Beatriz Costa",
+      "jobTitle": "Auxiliar de Produção",
+      "clientCompany": "Logística Nordeste"
     },
     {
-      "id": "col-7",
-      "nome": "Diego Fernandes",
-      "funcao": "Montador",
-      "empresaCliente": "Construtora Atlântico"
+      "id": "emp-7",
+      "name": "Diego Fernandes",
+      "jobTitle": "Montador",
+      "clientCompany": "Construtora Atlântico"
     },
     {
-      "id": "col-8",
-      "nome": "Larissa Alves",
-      "funcao": "Operadora de Máquina",
-      "empresaCliente": "Metalúrgica Recife"
+      "id": "emp-8",
+      "name": "Larissa Alves",
+      "jobTitle": "Operadora de Máquina",
+      "clientCompany": "Metalúrgica Recife"
     }
   ],
-  "tiposEpi": [
+  "ppeTypes": [
     {
-      "id": "epi-capacete",
-      "nome": "Capacete de segurança",
-      "validadeMeses": 24
+      "id": "ppe-helmet",
+      "name": "Capacete de segurança",
+      "validityMonths": 24
     },
     {
-      "id": "epi-luva",
-      "nome": "Luva de proteção",
-      "validadeMeses": 6
+      "id": "ppe-glove",
+      "name": "Luva de proteção",
+      "validityMonths": 6
     },
     {
-      "id": "epi-oculos",
-      "nome": "Óculos de proteção",
-      "validadeMeses": 12
+      "id": "ppe-goggles",
+      "name": "Óculos de proteção",
+      "validityMonths": 12
     },
     {
-      "id": "epi-bota",
-      "nome": "Bota de segurança",
-      "validadeMeses": 12
+      "id": "ppe-boot",
+      "name": "Bota de segurança",
+      "validityMonths": 12
     },
     {
-      "id": "epi-protetor-auricular",
-      "nome": "Protetor auricular",
-      "validadeMeses": 6
+      "id": "ppe-earplug",
+      "name": "Protetor auricular",
+      "validityMonths": 6
     },
     {
-      "id": "epi-cinto",
-      "nome": "Cinto de segurança (trabalho em altura)",
-      "validadeMeses": 12
+      "id": "ppe-harness",
+      "name": "Cinto de segurança (trabalho em altura)",
+      "validityMonths": 12
+    },
+    {
+      "id": "ppe-insulating-glove",
+      "name": "Luva isolante para eletricidade",
+      "validityMonths": 6
+    },
+    {
+      "id": "ppe-welding-mask",
+      "name": "Máscara de solda",
+      "validityMonths": 24
     }
   ],
-  "entregas": [
+  "deliveries": [
     {
-      "id": "ent-1",
-      "colaboradorId": "col-1",
-      "tipoEpiId": "epi-capacete",
-      "dataEntrega": "2023-07-14",
-      "dataValidade": "2025-07-14",
-      "assinaturaNome": "Marcos Silva",
-      "assinaturaData": "2023-07-14",
-      "qrCodeValor": "ent-1"
+      "id": "del-1",
+      "employeeId": "emp-1",
+      "ppeTypeId": "ppe-helmet",
+      "deliveryDate": "2023-07-14",
+      "expiryDate": "2025-07-14",
+      "signatureName": "Marcos Silva",
+      "signatureDate": "2023-07-14",
+      "qrCodeValue": "del-1"
     },
     {
-      "id": "ent-2",
-      "colaboradorId": "col-1",
-      "tipoEpiId": "epi-oculos",
-      "dataEntrega": "2024-08-07",
-      "dataValidade": "2025-08-07",
-      "assinaturaNome": "Marcos Silva",
-      "assinaturaData": "2024-08-07",
-      "qrCodeValor": "ent-2"
+      "id": "del-2",
+      "employeeId": "emp-1",
+      "ppeTypeId": "ppe-goggles",
+      "deliveryDate": "2024-08-07",
+      "expiryDate": "2025-08-07",
+      "signatureName": "Marcos Silva",
+      "signatureDate": "2024-08-07",
+      "qrCodeValue": "del-2"
     },
     {
-      "id": "ent-3",
-      "colaboradorId": "col-2",
-      "tipoEpiId": "epi-oculos",
-      "dataEntrega": "2025-01-24",
-      "dataValidade": "2026-01-24",
-      "assinaturaNome": "Ana Paula Souza",
-      "assinaturaData": "2025-01-24",
-      "qrCodeValor": "ent-3"
+      "id": "del-3",
+      "employeeId": "emp-2",
+      "ppeTypeId": "ppe-goggles",
+      "deliveryDate": "2025-01-24",
+      "expiryDate": "2026-01-24",
+      "signatureName": "Ana Paula Souza",
+      "signatureDate": "2025-01-24",
+      "qrCodeValue": "del-3"
     },
     {
-      "id": "ent-4",
-      "colaboradorId": "col-2",
-      "tipoEpiId": "epi-protetor-auricular",
-      "dataEntrega": "2026-01-19",
-      "dataValidade": "2026-07-19",
-      "assinaturaNome": "Ana Paula Souza",
-      "assinaturaData": "2026-01-19",
-      "qrCodeValor": "ent-4"
+      "id": "del-4",
+      "employeeId": "emp-2",
+      "ppeTypeId": "ppe-earplug",
+      "deliveryDate": "2026-01-19",
+      "expiryDate": "2026-07-19",
+      "signatureName": "Ana Paula Souza",
+      "signatureDate": "2026-01-19",
+      "qrCodeValue": "del-4"
     },
     {
-      "id": "ent-5",
-      "colaboradorId": "col-3",
-      "tipoEpiId": "epi-protetor-auricular",
-      "dataEntrega": "2026-01-29",
-      "dataValidade": "2026-07-29",
-      "assinaturaNome": "João Pedro Lima",
-      "assinaturaData": "2026-01-29",
-      "qrCodeValor": "ent-5"
+      "id": "del-5",
+      "employeeId": "emp-3",
+      "ppeTypeId": "ppe-earplug",
+      "deliveryDate": "2026-01-29",
+      "expiryDate": "2026-07-29",
+      "signatureName": "João Pedro Lima",
+      "signatureDate": "2026-01-29",
+      "qrCodeValue": "del-5"
     },
     {
-      "id": "ent-6",
-      "colaboradorId": "col-3",
-      "tipoEpiId": "epi-capacete",
-      "dataEntrega": "2024-08-17",
-      "dataValidade": "2026-08-17",
-      "assinaturaNome": "João Pedro Lima",
-      "assinaturaData": "2024-08-17",
-      "qrCodeValor": "ent-6"
+      "id": "del-6",
+      "employeeId": "emp-3",
+      "ppeTypeId": "ppe-insulating-glove",
+      "deliveryDate": "2026-02-08",
+      "expiryDate": "2026-08-08",
+      "signatureName": "João Pedro Lima",
+      "signatureDate": "2026-02-08",
+      "qrCodeValue": "del-6"
     },
     {
-      "id": "ent-7",
-      "colaboradorId": "col-4",
-      "tipoEpiId": "epi-capacete",
-      "dataEntrega": "2024-08-27",
-      "dataValidade": "2026-08-27",
-      "assinaturaNome": "Carla Mendes",
-      "assinaturaData": "2024-08-27",
-      "qrCodeValor": "ent-7"
+      "id": "del-7",
+      "employeeId": "emp-4",
+      "ppeTypeId": "ppe-insulating-glove",
+      "deliveryDate": "2026-02-18",
+      "expiryDate": "2026-08-18",
+      "signatureName": "Carla Mendes",
+      "signatureDate": "2026-02-18",
+      "qrCodeValue": "del-7"
     },
     {
-      "id": "ent-8",
-      "colaboradorId": "col-4",
-      "tipoEpiId": "epi-oculos",
-      "dataEntrega": "2025-09-21",
-      "dataValidade": "2026-09-21",
-      "assinaturaNome": "Carla Mendes",
-      "assinaturaData": "2025-09-21",
-      "qrCodeValor": "ent-8"
+      "id": "del-8",
+      "employeeId": "emp-4",
+      "ppeTypeId": "ppe-helmet",
+      "deliveryDate": "2024-09-26",
+      "expiryDate": "2026-09-26",
+      "signatureName": "Carla Mendes",
+      "signatureDate": "2024-09-26",
+      "qrCodeValue": "del-8"
     },
     {
-      "id": "ent-9",
-      "colaboradorId": "col-5",
-      "tipoEpiId": "epi-oculos",
-      "dataEntrega": "2025-11-20",
-      "dataValidade": "2026-11-20",
-      "assinaturaNome": "Rafael Torres",
-      "assinaturaData": "2025-11-20",
-      "qrCodeValor": "ent-9"
+      "id": "del-9",
+      "employeeId": "emp-5",
+      "ppeTypeId": "ppe-helmet",
+      "deliveryDate": "2024-11-25",
+      "expiryDate": "2026-11-25",
+      "signatureName": "Rafael Torres",
+      "signatureDate": "2024-11-25",
+      "qrCodeValue": "del-9"
     },
     {
-      "id": "ent-10",
-      "colaboradorId": "col-5",
-      "tipoEpiId": "epi-protetor-auricular",
-      "dataEntrega": "2026-08-27",
-      "dataValidade": "2027-02-27",
-      "assinaturaNome": "Rafael Torres",
-      "assinaturaData": "2026-08-27",
-      "qrCodeValor": "ent-10"
+      "id": "del-10",
+      "employeeId": "emp-5",
+      "ppeTypeId": "ppe-goggles",
+      "deliveryDate": "2026-02-28",
+      "expiryDate": "2027-02-28",
+      "signatureName": "Rafael Torres",
+      "signatureDate": "2026-02-28",
+      "qrCodeValue": "del-10"
     },
     {
-      "id": "ent-11",
-      "colaboradorId": "col-6",
-      "tipoEpiId": "epi-protetor-auricular",
-      "dataEntrega": "2026-12-05",
-      "dataValidade": "2027-06-05",
-      "assinaturaNome": "Beatriz Costa",
-      "assinaturaData": "2026-12-05",
-      "qrCodeValor": "ent-11"
+      "id": "del-11",
+      "employeeId": "emp-6",
+      "ppeTypeId": "ppe-goggles",
+      "deliveryDate": "2026-06-08",
+      "expiryDate": "2027-06-08",
+      "signatureName": "Beatriz Costa",
+      "signatureDate": "2026-06-08",
+      "qrCodeValue": "del-11"
     },
     {
-      "id": "ent-12",
-      "colaboradorId": "col-6",
-      "tipoEpiId": "epi-capacete",
-      "dataEntrega": "2025-08-02",
-      "dataValidade": "2027-08-02",
-      "assinaturaNome": "Beatriz Costa",
-      "assinaturaData": "2025-08-02",
-      "qrCodeValor": "ent-12"
+      "id": "del-12",
+      "employeeId": "emp-6",
+      "ppeTypeId": "ppe-earplug",
+      "deliveryDate": "2027-01-24",
+      "expiryDate": "2027-07-24",
+      "signatureName": "Beatriz Costa",
+      "signatureDate": "2027-01-24",
+      "qrCodeValue": "del-12"
     },
     {
-      "id": "ent-13",
-      "colaboradorId": "col-7",
-      "tipoEpiId": "epi-capacete",
-      "dataEntrega": "2023-07-14",
-      "dataValidade": "2025-07-14",
-      "assinaturaNome": "Diego Fernandes",
-      "assinaturaData": "2023-07-14",
-      "qrCodeValor": "ent-13"
+      "id": "del-13",
+      "employeeId": "emp-7",
+      "ppeTypeId": "ppe-earplug",
+      "deliveryDate": "2025-01-04",
+      "expiryDate": "2025-07-04",
+      "signatureName": "Diego Fernandes",
+      "signatureDate": "2025-01-04",
+      "qrCodeValue": "del-13"
     },
     {
-      "id": "ent-14",
-      "colaboradorId": "col-7",
-      "tipoEpiId": "epi-oculos",
-      "dataEntrega": "2024-08-07",
-      "dataValidade": "2025-08-07",
-      "assinaturaNome": "Diego Fernandes",
-      "assinaturaData": "2024-08-07",
-      "qrCodeValor": "ent-14"
+      "id": "del-14",
+      "employeeId": "emp-7",
+      "ppeTypeId": "ppe-insulating-glove",
+      "deliveryDate": "2025-02-03",
+      "expiryDate": "2025-08-03",
+      "signatureName": "Diego Fernandes",
+      "signatureDate": "2025-02-03",
+      "qrCodeValue": "del-14"
     },
     {
-      "id": "ent-15",
-      "colaboradorId": "col-8",
-      "tipoEpiId": "epi-oculos",
-      "dataEntrega": "2025-01-24",
-      "dataValidade": "2026-01-24",
-      "assinaturaNome": "Larissa Alves",
-      "assinaturaData": "2025-01-24",
-      "qrCodeValor": "ent-15"
+      "id": "del-15",
+      "employeeId": "emp-8",
+      "ppeTypeId": "ppe-insulating-glove",
+      "deliveryDate": "2025-07-23",
+      "expiryDate": "2026-01-23",
+      "signatureName": "Larissa Alves",
+      "signatureDate": "2025-07-23",
+      "qrCodeValue": "del-15"
     },
     {
-      "id": "ent-16",
-      "colaboradorId": "col-8",
-      "tipoEpiId": "epi-protetor-auricular",
-      "dataEntrega": "2026-01-19",
-      "dataValidade": "2026-07-19",
-      "assinaturaNome": "Larissa Alves",
-      "assinaturaData": "2026-01-19",
-      "qrCodeValor": "ent-16"
+      "id": "del-16",
+      "employeeId": "emp-8",
+      "ppeTypeId": "ppe-helmet",
+      "deliveryDate": "2024-07-28",
+      "expiryDate": "2026-07-28",
+      "signatureName": "Larissa Alves",
+      "signatureDate": "2024-07-28",
+      "qrCodeValue": "del-16"
+    },
+    {
+      "id": "del-17",
+      "employeeId": "emp-7",
+      "ppeTypeId": "ppe-harness",
+      "deliveryDate": "2026-06-08",
+      "expiryDate": "2027-06-08",
+      "signatureName": "Diego Fernandes",
+      "signatureDate": "2026-06-08",
+      "qrCodeValue": "del-17"
+    },
+    {
+      "id": "del-18",
+      "employeeId": "emp-7",
+      "ppeTypeId": "ppe-helmet",
+      "deliveryDate": "2026-06-08",
+      "expiryDate": "2028-06-08",
+      "signatureName": "Diego Fernandes",
+      "signatureDate": "2026-06-08",
+      "qrCodeValue": "del-18"
+    },
+    {
+      "id": "del-19",
+      "employeeId": "emp-4",
+      "ppeTypeId": "ppe-insulating-glove",
+      "deliveryDate": "2026-06-08",
+      "expiryDate": "2026-12-08",
+      "signatureName": "Carla Mendes",
+      "signatureDate": "2026-06-08",
+      "qrCodeValue": "del-19"
+    },
+    {
+      "id": "del-20",
+      "employeeId": "emp-4",
+      "ppeTypeId": "ppe-helmet",
+      "deliveryDate": "2026-06-08",
+      "expiryDate": "2028-06-08",
+      "signatureName": "Carla Mendes",
+      "signatureDate": "2026-06-08",
+      "qrCodeValue": "del-20"
+    },
+    {
+      "id": "del-21",
+      "employeeId": "emp-1",
+      "ppeTypeId": "ppe-welding-mask",
+      "deliveryDate": "2026-06-08",
+      "expiryDate": "2028-06-08",
+      "signatureName": "Marcos Silva",
+      "signatureDate": "2026-06-08",
+      "qrCodeValue": "del-21"
+    },
+    {
+      "id": "del-22",
+      "employeeId": "emp-1",
+      "ppeTypeId": "ppe-glove",
+      "deliveryDate": "2026-06-08",
+      "expiryDate": "2026-12-08",
+      "signatureName": "Marcos Silva",
+      "signatureDate": "2026-06-08",
+      "qrCodeValue": "del-22"
+    },
+    {
+      "id": "del-23",
+      "employeeId": "emp-2",
+      "ppeTypeId": "ppe-helmet",
+      "deliveryDate": "2026-06-08",
+      "expiryDate": "2028-06-08",
+      "signatureName": "Ana Paula Souza",
+      "signatureDate": "2026-06-08",
+      "qrCodeValue": "del-23"
     }
   ],
   "checklists": [
     {
       "id": "chk-1",
-      "setor": "Solda",
-      "data": "2026-07-07",
-      "tecnicoResponsavel": "Ana Paula Souza",
-      "itens": [
+      "sector": "Solda",
+      "date": "2026-07-07",
+      "responsibleTechnician": "Ana Paula Souza",
+      "items": [
         {
-          "descricao": "EPIs em uso corretamente",
-          "resposta": "sim"
+          "description": "EPIs em uso corretamente",
+          "answer": "yes"
         },
         {
-          "descricao": "Extintores acessíveis",
-          "resposta": "sim"
+          "description": "Extintores acessíveis",
+          "answer": "yes"
         },
         {
-          "descricao": "Área de solda isolada",
-          "resposta": "sim"
+          "description": "Área de solda isolada",
+          "answer": "yes"
         },
         {
-          "descricao": "Iluminação adequada",
-          "resposta": "na"
+          "description": "Iluminação adequada",
+          "answer": "na"
         }
       ]
     },
     {
       "id": "chk-2",
-      "setor": "Logística / Pátio",
-      "data": "2026-07-06",
-      "tecnicoResponsavel": "Ana Paula Souza",
-      "itens": [
+      "sector": "Logística / Pátio",
+      "date": "2026-07-06",
+      "responsibleTechnician": "Ana Paula Souza",
+      "items": [
         {
-          "descricao": "Empilhadeiras com checklist do dia",
-          "resposta": "sim"
+          "description": "Empilhadeiras com checklist do dia",
+          "answer": "yes"
         },
         {
-          "descricao": "Piso livre de obstáculos",
-          "resposta": "nao"
+          "description": "Piso livre de obstáculos",
+          "answer": "no"
         },
         {
-          "descricao": "Sinalização de solo visível",
-          "resposta": "sim"
+          "description": "Sinalização de solo visível",
+          "answer": "yes"
         }
       ]
     },
     {
       "id": "chk-3",
-      "setor": "Construção / Altura",
-      "data": "2026-07-05",
-      "tecnicoResponsavel": "Ana Paula Souza",
-      "itens": [
+      "sector": "Construção / Altura",
+      "date": "2026-07-05",
+      "responsibleTechnician": "Ana Paula Souza",
+      "items": [
         {
-          "descricao": "Cinto de segurança inspecionado",
-          "resposta": "sim"
+          "description": "Cinto de segurança inspecionado",
+          "answer": "yes"
         },
         {
-          "descricao": "Andaime travado",
-          "resposta": "sim"
+          "description": "Andaime travado",
+          "answer": "yes"
         },
         {
-          "descricao": "Guarda-corpo instalado",
-          "resposta": "sim"
+          "description": "Guarda-corpo instalado",
+          "answer": "yes"
         }
       ]
     }
   ],
-  "incidentes": [
+  "incidents": [
     {
       "id": "inc-1",
-      "data": "2026-07-03",
-      "local": "Pátio de logística",
-      "colaboradorId": "col-3",
-      "gravidade": "leve",
-      "descricao": "Quase queda ao descer da empilhadeira, piso molhado."
+      "date": "2026-07-03",
+      "location": "Pátio de logística",
+      "employeeId": "emp-3",
+      "severity": "minor",
+      "description": "Quase queda ao descer da empilhadeira, piso molhado."
     },
     {
       "id": "inc-2",
-      "data": "2026-06-26",
-      "local": "Setor de solda",
-      "colaboradorId": "col-1",
-      "gravidade": "moderado",
-      "descricao": "Faísca atingiu luva, sem ferimento por estar dentro da validade."
+      "date": "2026-06-26",
+      "location": "Setor de solda",
+      "employeeId": "emp-1",
+      "severity": "moderate",
+      "description": "Faísca atingiu luva, sem ferimento por estar dentro da validade."
     },
     {
       "id": "inc-3",
-      "data": "2026-06-18",
-      "local": "Obra Construtora Atlântico",
-      "colaboradorId": "col-5",
-      "gravidade": "grave",
-      "descricao": "Queda de material de andaime, área isolada a tempo."
+      "date": "2026-06-18",
+      "location": "Obra Construtora Atlântico",
+      "employeeId": "emp-5",
+      "severity": "severe",
+      "description": "Queda de material de andaime, área isolada a tempo."
     }
   ],
-  "treinamentos": [
+  "trainings": [
     {
       "id": "nr-35",
-      "norma": "NR-35",
-      "nome": "Trabalho em altura",
-      "reciclagemMeses": 24
+      "standard": "NR-35",
+      "name": "Trabalho em altura",
+      "refresherMonths": 24
     },
     {
       "id": "nr-33",
-      "norma": "NR-33",
-      "nome": "Espaço confinado",
-      "reciclagemMeses": 12
+      "standard": "NR-33",
+      "name": "Espaço confinado",
+      "refresherMonths": 12
     },
     {
       "id": "nr-10",
-      "norma": "NR-10",
-      "nome": "Segurança em instalações elétricas",
-      "reciclagemMeses": 24
+      "standard": "NR-10",
+      "name": "Segurança em instalações elétricas",
+      "refresherMonths": 24
     },
     {
       "id": "nr-11",
-      "norma": "NR-11",
-      "nome": "Operação de empilhadeira",
-      "reciclagemMeses": 12
+      "standard": "NR-11",
+      "name": "Operação de empilhadeira",
+      "refresherMonths": 12
     },
     {
       "id": "nr-12",
-      "norma": "NR-12",
-      "nome": "Segurança em máquinas e equipamentos",
-      "reciclagemMeses": 24
+      "standard": "NR-12",
+      "name": "Segurança em máquinas e equipamentos",
+      "refresherMonths": 24
     },
     {
       "id": "nr-06",
-      "norma": "NR-06",
-      "nome": "Uso correto de EPI",
-      "reciclagemMeses": 12
+      "standard": "NR-06",
+      "name": "Uso correto de EPI",
+      "refresherMonths": 12
+    },
+    {
+      "id": "nr-34",
+      "standard": "NR-34",
+      "name": "Trabalho a quente",
+      "refresherMonths": 12
     }
   ],
-  "treinamentosRealizados": [
+  "trainingRecords": [
     {
-      "id": "trn-1",
-      "colaboradorId": "col-1",
-      "treinamentoId": "nr-06",
-      "dataRealizacao": "2025-06-03",
-      "dataValidade": "2026-06-03",
-      "instrutor": "Ana Paula Souza"
+      "id": "rec-1",
+      "employeeId": "emp-1",
+      "trainingId": "nr-06",
+      "completionDate": "2025-06-03",
+      "expiryDate": "2026-06-03",
+      "instructor": "Ana Paula Souza"
     },
     {
-      "id": "trn-2",
-      "colaboradorId": "col-1",
-      "treinamentoId": "nr-12",
-      "dataRealizacao": "2025-09-11",
-      "dataValidade": "2027-09-11",
-      "instrutor": "Ana Paula Souza"
+      "id": "rec-2",
+      "employeeId": "emp-1",
+      "trainingId": "nr-12",
+      "completionDate": "2025-09-11",
+      "expiryDate": "2027-09-11",
+      "instructor": "Ana Paula Souza"
     },
     {
-      "id": "trn-3",
-      "colaboradorId": "col-2",
-      "treinamentoId": "nr-06",
-      "dataRealizacao": "2026-03-30",
-      "dataValidade": "2027-03-30",
-      "instrutor": "Ana Paula Souza"
+      "id": "rec-3",
+      "employeeId": "emp-1",
+      "trainingId": "nr-34",
+      "completionDate": "2026-04-09",
+      "expiryDate": "2027-04-09",
+      "instructor": "Ana Paula Souza"
     },
     {
-      "id": "trn-4",
-      "colaboradorId": "col-2",
-      "treinamentoId": "nr-33",
-      "dataRealizacao": "2025-07-23",
-      "dataValidade": "2026-07-23",
-      "instrutor": "Ana Paula Souza"
+      "id": "rec-4",
+      "employeeId": "emp-2",
+      "trainingId": "nr-06",
+      "completionDate": "2026-03-30",
+      "expiryDate": "2027-03-30",
+      "instructor": "Ana Paula Souza"
     },
     {
-      "id": "trn-5",
-      "colaboradorId": "col-3",
-      "treinamentoId": "nr-11",
-      "dataRealizacao": "2025-06-23",
-      "dataValidade": "2026-06-23",
-      "instrutor": "Ana Paula Souza"
+      "id": "rec-5",
+      "employeeId": "emp-2",
+      "trainingId": "nr-33",
+      "completionDate": "2025-07-23",
+      "expiryDate": "2026-07-23",
+      "instructor": "Ana Paula Souza"
     },
     {
-      "id": "trn-6",
-      "colaboradorId": "col-3",
-      "treinamentoId": "nr-06",
-      "dataRealizacao": "2026-05-09",
-      "dataValidade": "2027-05-09",
-      "instrutor": "Ana Paula Souza"
+      "id": "rec-6",
+      "employeeId": "emp-3",
+      "trainingId": "nr-11",
+      "completionDate": "2025-06-23",
+      "expiryDate": "2026-06-23",
+      "instructor": "Ana Paula Souza"
     },
     {
-      "id": "trn-7",
-      "colaboradorId": "col-4",
-      "treinamentoId": "nr-10",
-      "dataRealizacao": "2025-12-20",
-      "dataValidade": "2027-12-20",
-      "instrutor": "Ana Paula Souza"
+      "id": "rec-7",
+      "employeeId": "emp-3",
+      "trainingId": "nr-06",
+      "completionDate": "2026-05-09",
+      "expiryDate": "2027-05-09",
+      "instructor": "Ana Paula Souza"
     },
     {
-      "id": "trn-8",
-      "colaboradorId": "col-4",
-      "treinamentoId": "nr-06",
-      "dataRealizacao": "2026-06-08",
-      "dataValidade": "2027-06-08",
-      "instrutor": "Ana Paula Souza"
+      "id": "rec-8",
+      "employeeId": "emp-4",
+      "trainingId": "nr-10",
+      "completionDate": "2025-12-20",
+      "expiryDate": "2027-12-20",
+      "instructor": "Ana Paula Souza"
     },
     {
-      "id": "trn-9",
-      "colaboradorId": "col-5",
-      "treinamentoId": "nr-35",
-      "dataRealizacao": "2024-08-07",
-      "dataValidade": "2026-08-07",
-      "instrutor": "Ana Paula Souza"
+      "id": "rec-9",
+      "employeeId": "emp-4",
+      "trainingId": "nr-06",
+      "completionDate": "2026-06-08",
+      "expiryDate": "2027-06-08",
+      "instructor": "Ana Paula Souza"
     },
     {
-      "id": "trn-10",
-      "colaboradorId": "col-5",
-      "treinamentoId": "nr-06",
-      "dataRealizacao": "2025-08-02",
-      "dataValidade": "2026-08-02",
-      "instrutor": "Ana Paula Souza"
+      "id": "rec-10",
+      "employeeId": "emp-5",
+      "trainingId": "nr-35",
+      "completionDate": "2024-04-29",
+      "expiryDate": "2026-04-29",
+      "instructor": "Ana Paula Souza"
     },
     {
-      "id": "trn-11",
-      "colaboradorId": "col-6",
-      "treinamentoId": "nr-06",
-      "dataRealizacao": "2026-06-18",
-      "dataValidade": "2027-06-18",
-      "instrutor": "Ana Paula Souza"
+      "id": "rec-11",
+      "employeeId": "emp-5",
+      "trainingId": "nr-06",
+      "completionDate": "2025-08-02",
+      "expiryDate": "2026-08-02",
+      "instructor": "Ana Paula Souza"
     },
     {
-      "id": "trn-12",
-      "colaboradorId": "col-7",
-      "treinamentoId": "nr-35",
-      "dataRealizacao": "2025-06-03",
-      "dataValidade": "2027-06-03",
-      "instrutor": "Ana Paula Souza"
+      "id": "rec-12",
+      "employeeId": "emp-6",
+      "trainingId": "nr-06",
+      "completionDate": "2026-06-18",
+      "expiryDate": "2027-06-18",
+      "instructor": "Ana Paula Souza"
     },
     {
-      "id": "trn-13",
-      "colaboradorId": "col-7",
-      "treinamentoId": "nr-06",
-      "dataRealizacao": "2026-06-28",
-      "dataValidade": "2027-06-28",
-      "instrutor": "Ana Paula Souza"
+      "id": "rec-13",
+      "employeeId": "emp-7",
+      "trainingId": "nr-35",
+      "completionDate": "2025-06-03",
+      "expiryDate": "2027-06-03",
+      "instructor": "Ana Paula Souza"
     },
     {
-      "id": "trn-14",
-      "colaboradorId": "col-8",
-      "treinamentoId": "nr-12",
-      "dataRealizacao": "2025-02-23",
-      "dataValidade": "2027-02-23",
-      "instrutor": "Ana Paula Souza"
+      "id": "rec-14",
+      "employeeId": "emp-7",
+      "trainingId": "nr-06",
+      "completionDate": "2026-06-28",
+      "expiryDate": "2027-06-28",
+      "instructor": "Ana Paula Souza"
     },
     {
-      "id": "trn-15",
-      "colaboradorId": "col-8",
-      "treinamentoId": "nr-06",
-      "dataRealizacao": "2025-07-18",
-      "dataValidade": "2026-07-18",
-      "instrutor": "Ana Paula Souza"
+      "id": "rec-15",
+      "employeeId": "emp-8",
+      "trainingId": "nr-12",
+      "completionDate": "2025-02-23",
+      "expiryDate": "2027-02-23",
+      "instructor": "Ana Paula Souza"
+    },
+    {
+      "id": "rec-16",
+      "employeeId": "emp-8",
+      "trainingId": "nr-06",
+      "completionDate": "2025-07-18",
+      "expiryDate": "2026-07-18",
+      "instructor": "Ana Paula Souza"
+    }
+  ],
+  "checklistTemplates": [
+    {
+      "id": "height-mewp",
+      "name": "Trabalho em altura com plataforma elevatória (PEMT)",
+      "standard": "NR-35",
+      "requiredTrainingIds": [
+        "nr-35"
+      ],
+      "requiredPpeIds": [
+        "ppe-harness",
+        "ppe-helmet"
+      ],
+      "items": [
+        {
+          "id": "hgt-1",
+          "type": "verification",
+          "description": "Estrutura da PEMT sem trincas, corrosão ou deformação",
+          "allowsNA": false
+        },
+        {
+          "id": "hgt-2",
+          "type": "verification",
+          "description": "Pneus, rodas e freios inspecionados no início do turno",
+          "allowsNA": false
+        },
+        {
+          "id": "hgt-3",
+          "type": "verification",
+          "description": "Comandos de subida, descida e movimentação testados",
+          "allowsNA": false
+        },
+        {
+          "id": "hgt-4",
+          "type": "verification",
+          "description": "Alarmes sonoros e luminosos funcionando",
+          "allowsNA": false
+        },
+        {
+          "id": "hgt-5",
+          "type": "verification",
+          "description": "Cinto com talabarte conectado ao ponto de ancoragem da cesta",
+          "allowsNA": false
+        },
+        {
+          "id": "hgt-6",
+          "type": "verification",
+          "description": "Solo nivelado e com capacidade de carga para a PEMT",
+          "allowsNA": false
+        },
+        {
+          "id": "hgt-7",
+          "type": "verification",
+          "description": "Área abaixo isolada e sinalizada",
+          "allowsNA": false
+        },
+        {
+          "id": "hgt-8",
+          "type": "verification",
+          "description": "Plano de resgate definido e equipe ciente",
+          "allowsNA": false
+        },
+        {
+          "id": "hgt-9",
+          "type": "verification",
+          "description": "Linha elétrica energizada nas proximidades foi isolada",
+          "allowsNA": true
+        },
+        {
+          "id": "hgt-10",
+          "type": "measurement",
+          "description": "Velocidade do vento",
+          "unit": " km/h",
+          "max": 40
+        },
+        {
+          "id": "hgt-11",
+          "type": "person",
+          "description": "Observador no solo durante a operação",
+          "role": "Observador de solo",
+          "exclusive": true
+        }
+      ]
+    },
+    {
+      "id": "hot-work",
+      "name": "Trabalho a quente (solda, corte, esmerilhamento)",
+      "standard": "NR-34",
+      "requiredTrainingIds": [
+        "nr-34"
+      ],
+      "requiredPpeIds": [
+        "ppe-welding-mask",
+        "ppe-glove"
+      ],
+      "items": [
+        {
+          "id": "hot-1",
+          "type": "verification",
+          "description": "Materiais inflamáveis e combustíveis removidos da área",
+          "allowsNA": false
+        },
+        {
+          "id": "hot-2",
+          "type": "verification",
+          "description": "Extintor carregado e posicionado ao alcance do executante",
+          "allowsNA": false
+        },
+        {
+          "id": "hot-3",
+          "type": "verification",
+          "description": "Biombo ou manta retardante isolando a área",
+          "allowsNA": false
+        },
+        {
+          "id": "hot-4",
+          "type": "verification",
+          "description": "Aberturas, drenos e frestas vedados contra faísca",
+          "allowsNA": true
+        },
+        {
+          "id": "hot-5",
+          "type": "verification",
+          "description": "Equipamento de solda e mangueiras inspecionados",
+          "allowsNA": false
+        },
+        {
+          "id": "hot-6",
+          "type": "verification",
+          "description": "Vigia de fogo permanece 60 minutos após o término",
+          "allowsNA": false
+        },
+        {
+          "id": "hot-7",
+          "type": "measurement",
+          "description": "Explosividade da atmosfera",
+          "unit": "% LIE",
+          "max": 0
+        },
+        {
+          "id": "hot-8",
+          "type": "person",
+          "description": "Vigia de fogo, com extintor portátil",
+          "role": "Vigia de fogo",
+          "exclusive": true
+        }
+      ]
+    },
+    {
+      "id": "confined-space",
+      "name": "Entrada em espaço confinado",
+      "standard": "NR-33",
+      "requiredTrainingIds": [
+        "nr-33"
+      ],
+      "requiredPpeIds": [
+        "ppe-helmet"
+      ],
+      "items": [
+        {
+          "id": "cs-1",
+          "type": "verification",
+          "description": "Espaço isolado, bloqueado e sinalizado",
+          "allowsNA": false
+        },
+        {
+          "id": "cs-2",
+          "type": "verification",
+          "description": "Energias e fluidos bloqueados e etiquetados",
+          "allowsNA": false
+        },
+        {
+          "id": "cs-3",
+          "type": "verification",
+          "description": "Ventilação forçada em operação",
+          "allowsNA": true
+        },
+        {
+          "id": "cs-4",
+          "type": "verification",
+          "description": "Monitoramento contínuo da atmosfera durante a permanência",
+          "allowsNA": false
+        },
+        {
+          "id": "cs-5",
+          "type": "verification",
+          "description": "Equipamento de resgate montado e testado",
+          "allowsNA": false
+        },
+        {
+          "id": "cs-6",
+          "type": "verification",
+          "description": "Comunicação entre vigia e trabalhadores testada",
+          "allowsNA": false
+        },
+        {
+          "id": "cs-o2",
+          "type": "measurement",
+          "description": "Oxigênio",
+          "unit": "%",
+          "min": 19.5,
+          "max": 23
+        },
+        {
+          "id": "cs-lel",
+          "type": "measurement",
+          "description": "Explosividade",
+          "unit": "% LIE",
+          "max": 10
+        },
+        {
+          "id": "cs-h2s",
+          "type": "measurement",
+          "description": "Sulfeto de hidrogênio",
+          "unit": " ppm",
+          "max": 8
+        },
+        {
+          "id": "cs-co",
+          "type": "measurement",
+          "description": "Monóxido de carbono",
+          "unit": " ppm",
+          "max": 25
+        },
+        {
+          "id": "cs-watcher",
+          "type": "person",
+          "description": "Vigia — função exclusiva, não executa a tarefa",
+          "role": "Vigia",
+          "exclusive": true
+        },
+        {
+          "id": "cs-supervisor",
+          "type": "person",
+          "description": "Supervisor de entrada",
+          "role": "Supervisor de entrada",
+          "exclusive": false
+        }
+      ]
+    },
+    {
+      "id": "electrical",
+      "name": "Intervenção em instalação elétrica desenergizada",
+      "standard": "NR-10",
+      "requiredTrainingIds": [
+        "nr-10"
+      ],
+      "requiredPpeIds": [
+        "ppe-insulating-glove",
+        "ppe-helmet"
+      ],
+      "items": [
+        {
+          "id": "elc-1",
+          "type": "verification",
+          "description": "Seccionamento: chave aberta de forma visível",
+          "allowsNA": false
+        },
+        {
+          "id": "elc-2",
+          "type": "verification",
+          "description": "Bloqueio e etiquetagem (LOTO) com cadeado individual",
+          "allowsNA": false
+        },
+        {
+          "id": "elc-3",
+          "type": "verification",
+          "description": "Ausência de tensão constatada com instrumento adequado",
+          "allowsNA": false
+        },
+        {
+          "id": "elc-4",
+          "type": "verification",
+          "description": "Aterramento temporário de equipotencialização instalado",
+          "allowsNA": true
+        },
+        {
+          "id": "elc-5",
+          "type": "verification",
+          "description": "Área sinalizada e isolada",
+          "allowsNA": false
+        },
+        {
+          "id": "elc-6",
+          "type": "verification",
+          "description": "Instrumento de medição com aferição válida",
+          "allowsNA": false
+        },
+        {
+          "id": "elc-7",
+          "type": "measurement",
+          "description": "Tensão residual medida no ponto de trabalho",
+          "unit": " V",
+          "max": 0
+        },
+        {
+          "id": "elc-8",
+          "type": "person",
+          "description": "Profissional habilitado responsável pela desenergização",
+          "role": "Responsável pela desenergização",
+          "exclusive": false
+        }
+      ]
+    }
+  ],
+  "aprs": [
+    {
+      "id": "apr-1",
+      "task": "Troca de luminárias do galpão de expedição",
+      "location": "Galpão 2 — Logística Nordeste",
+      "date": "2026-07-07",
+      "author": "Ana Paula Souza",
+      "status": "approved",
+      "approvedBy": "Ana Paula Souza",
+      "approvedAt": "2026-07-07",
+      "steps": [
+        {
+          "description": "Posicionar a plataforma elevatória sob a luminária",
+          "hazard": "Tombamento da plataforma em piso irregular",
+          "initialRisk": {
+            "likelihood": 3,
+            "severity": 5
+          },
+          "controls": [
+            "Verificar nivelamento e capacidade de carga do piso",
+            "Isolar a área de circulação de empilhadeiras"
+          ],
+          "residualRisk": {
+            "likelihood": 1,
+            "severity": 5
+          }
+        },
+        {
+          "description": "Elevar a cesta e substituir a luminária",
+          "hazard": "Queda de altura",
+          "initialRisk": {
+            "likelihood": 3,
+            "severity": 5
+          },
+          "controls": [
+            "Cinto com talabarte conectado ao ponto de ancoragem da cesta",
+            "Observador no solo durante toda a operação"
+          ],
+          "residualRisk": {
+            "likelihood": 1,
+            "severity": 4
+          }
+        },
+        {
+          "description": "Descartar a luminária antiga",
+          "hazard": "Corte por vidro quebrado",
+          "initialRisk": {
+            "likelihood": 3,
+            "severity": 2
+          },
+          "controls": [
+            "Luva de proteção",
+            "Caixa rígida para o descarte"
+          ],
+          "residualRisk": {
+            "likelihood": 1,
+            "severity": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "apr-2",
+      "task": "Solda de reparo em estrutura do mezanino",
+      "location": "Setor de solda — Metalúrgica Recife",
+      "date": "2026-07-08",
+      "author": "Ana Paula Souza",
+      "status": "draft",
+      "steps": [
+        {
+          "description": "Preparar a área e remover materiais combustíveis",
+          "hazard": "Ignição de material combustível por faísca",
+          "initialRisk": {
+            "likelihood": 4,
+            "severity": 4
+          },
+          "controls": [
+            "Remover combustíveis num raio de 11 metros",
+            "Biombo retardante em volta do posto de solda",
+            "Vigia de fogo com extintor durante e 60 minutos após"
+          ],
+          "residualRisk": {
+            "likelihood": 1,
+            "severity": 4
+          }
+        },
+        {
+          "description": "Executar a solda",
+          "hazard": "Radiação do arco e projeção de partículas",
+          "initialRisk": {
+            "likelihood": 5,
+            "severity": 3
+          },
+          "controls": [
+            "Máscara de solda com filtro adequado",
+            "Luva e mangote"
+          ],
+          "residualRisk": {
+            "likelihood": 2,
+            "severity": 2
+          }
+        }
+      ]
+    }
+  ],
+  "ltrs": [
+    {
+      "id": "ltr-1",
+      "aprId": "apr-1",
+      "templateId": "height-mewp",
+      "location": "Galpão 2 — Logística Nordeste",
+      "workDescription": "Substituição de 6 luminárias no vão central",
+      "issuedAt": "2026-07-08T07:12:00.000Z",
+      "validUntil": "2026-07-10T17:00:00.000Z",
+      "requester": "Beatriz Costa",
+      "issuer": {
+        "name": "Sgt. Ricardo Nunes",
+        "date": "2026-07-08T07:12:00.000Z"
+      },
+      "workerIds": [
+        "emp-7"
+      ],
+      "answers": [
+        {
+          "itemId": "hgt-1",
+          "type": "verification",
+          "answer": "yes"
+        },
+        {
+          "itemId": "hgt-2",
+          "type": "verification",
+          "answer": "yes"
+        },
+        {
+          "itemId": "hgt-3",
+          "type": "verification",
+          "answer": "yes"
+        },
+        {
+          "itemId": "hgt-4",
+          "type": "verification",
+          "answer": "yes"
+        },
+        {
+          "itemId": "hgt-5",
+          "type": "verification",
+          "answer": "yes"
+        },
+        {
+          "itemId": "hgt-6",
+          "type": "verification",
+          "answer": "yes"
+        },
+        {
+          "itemId": "hgt-7",
+          "type": "verification",
+          "answer": "yes"
+        },
+        {
+          "itemId": "hgt-8",
+          "type": "verification",
+          "answer": "yes"
+        },
+        {
+          "itemId": "hgt-9",
+          "type": "verification",
+          "answer": "na"
+        },
+        {
+          "itemId": "hgt-10",
+          "type": "measurement",
+          "value": 8
+        },
+        {
+          "itemId": "hgt-11",
+          "type": "person",
+          "name": "Beatriz Costa"
+        }
+      ],
+      "aprSnapshot": {
+        "id": "apr-1",
+        "task": "Troca de luminárias do galpão de expedição",
+        "location": "Galpão 2 — Logística Nordeste",
+        "date": "2026-07-07",
+        "author": "Ana Paula Souza",
+        "status": "approved",
+        "approvedBy": "Ana Paula Souza",
+        "approvedAt": "2026-07-07",
+        "steps": [
+          {
+            "description": "Posicionar a plataforma elevatória sob a luminária",
+            "hazard": "Tombamento da plataforma em piso irregular",
+            "initialRisk": {
+              "likelihood": 3,
+              "severity": 5
+            },
+            "controls": [
+              "Verificar nivelamento e capacidade de carga do piso",
+              "Isolar a área de circulação de empilhadeiras"
+            ],
+            "residualRisk": {
+              "likelihood": 1,
+              "severity": 5
+            }
+          },
+          {
+            "description": "Elevar a cesta e substituir a luminária",
+            "hazard": "Queda de altura",
+            "initialRisk": {
+              "likelihood": 3,
+              "severity": 5
+            },
+            "controls": [
+              "Cinto com talabarte conectado ao ponto de ancoragem da cesta",
+              "Observador no solo durante toda a operação"
+            ],
+            "residualRisk": {
+              "likelihood": 1,
+              "severity": 4
+            }
+          },
+          {
+            "description": "Descartar a luminária antiga",
+            "hazard": "Corte por vidro quebrado",
+            "initialRisk": {
+              "likelihood": 3,
+              "severity": 2
+            },
+            "controls": [
+              "Luva de proteção",
+              "Caixa rígida para o descarte"
+            ],
+            "residualRisk": {
+              "likelihood": 1,
+              "severity": 2
+            }
+          }
+        ]
+      },
+      "templateSnapshot": {
+        "id": "height-mewp",
+        "name": "Trabalho em altura com plataforma elevatória (PEMT)",
+        "standard": "NR-35",
+        "requiredTrainingIds": [
+          "nr-35"
+        ],
+        "requiredPpeIds": [
+          "ppe-harness",
+          "ppe-helmet"
+        ],
+        "items": [
+          {
+            "id": "hgt-1",
+            "type": "verification",
+            "description": "Estrutura da PEMT sem trincas, corrosão ou deformação",
+            "allowsNA": false
+          },
+          {
+            "id": "hgt-2",
+            "type": "verification",
+            "description": "Pneus, rodas e freios inspecionados no início do turno",
+            "allowsNA": false
+          },
+          {
+            "id": "hgt-3",
+            "type": "verification",
+            "description": "Comandos de subida, descida e movimentação testados",
+            "allowsNA": false
+          },
+          {
+            "id": "hgt-4",
+            "type": "verification",
+            "description": "Alarmes sonoros e luminosos funcionando",
+            "allowsNA": false
+          },
+          {
+            "id": "hgt-5",
+            "type": "verification",
+            "description": "Cinto com talabarte conectado ao ponto de ancoragem da cesta",
+            "allowsNA": false
+          },
+          {
+            "id": "hgt-6",
+            "type": "verification",
+            "description": "Solo nivelado e com capacidade de carga para a PEMT",
+            "allowsNA": false
+          },
+          {
+            "id": "hgt-7",
+            "type": "verification",
+            "description": "Área abaixo isolada e sinalizada",
+            "allowsNA": false
+          },
+          {
+            "id": "hgt-8",
+            "type": "verification",
+            "description": "Plano de resgate definido e equipe ciente",
+            "allowsNA": false
+          },
+          {
+            "id": "hgt-9",
+            "type": "verification",
+            "description": "Linha elétrica energizada nas proximidades foi isolada",
+            "allowsNA": true
+          },
+          {
+            "id": "hgt-10",
+            "type": "measurement",
+            "description": "Velocidade do vento",
+            "unit": " km/h",
+            "max": 40
+          },
+          {
+            "id": "hgt-11",
+            "type": "person",
+            "description": "Observador no solo durante a operação",
+            "role": "Observador de solo",
+            "exclusive": true
+          }
+        ]
+      },
+      "qrCodeValue": "ltr-1"
     }
   ]
 }

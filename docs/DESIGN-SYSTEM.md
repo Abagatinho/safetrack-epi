@@ -17,38 +17,38 @@ real de conformidade.
 
 | Token | Hex | Significado (NBR 7195) | Uso no produto |
 |---|---|---|---|
-| `--perigo` | `#c8102e` | Perigo, equipamento de incêndio | EPI vencido, incidente grave |
-| `--cuidado` | `#ffc72c` | Cuidado, atenção | EPI vencendo em 30 dias, incidente leve |
-| `--seguranca` | `#00843d` | Segurança | EPI em dia, conformidade |
-| `--advertencia` | `#005eb8` | Advertência, EPI obrigatório | Links, foco de teclado |
-| `--maquina` | `#e8590c` | Partes móveis de máquina | Incidente moderado |
+| `--danger` | `#c8102e` | Perigo, equipamento de incêndio | EPI vencido, incidente grave |
+| `--caution` | `#ffc72c` | Cuidado, atenção | EPI vencendo em 30 dias, incidente leve |
+| `--safety` | `#00843d` | Segurança | EPI em dia, conformidade |
+| `--mandatory` | `#005eb8` | Advertência, EPI obrigatório | Links, foco de teclado |
+| `--machine` | `#e8590c` | Partes móveis de máquina | Incidente moderado |
 
 Neutros industriais — aço, concreto, grafite:
 
 | Token | Hex | Uso |
 |---|---|---|
-| `--grafite` | `#1b1e23` | Chassi, texto principal |
-| `--carvao` | `#2a2e35` | Elevação dentro do chassi |
-| `--fumaca` | `#6b7078` | Texto secundário sobre superfície clara |
-| `--neblina` | `#9aa0a8` | Texto secundário sobre o chassi (6.5:1) |
-| `--traco` | `#c9cbc6` | Bordas |
-| `--concreto` | `#e3e4e0` | Superfície da aplicação |
-| `--aco` | `#fafaf9` | Placas, cards |
+| `--graphite` | `#1b1e23` | Chassi, texto principal |
+| `--charcoal` | `#2a2e35` | Elevação dentro do chassi |
+| `--smoke` | `#6b7078` | Texto secundário sobre superfície clara |
+| `--mist` | `#9aa0a8` | Texto secundário sobre o chassi (6.5:1) |
+| `--rule` | `#c9cbc6` | Bordas |
+| `--concrete` | `#e3e4e0` | Superfície da aplicação |
+| `--steel` | `#fafaf9` | Placas, cards |
 
-`--fumaca` sobre `--grafite` daria apenas 3:1. Por isso existe `--neblina`:
+`--smoke` sobre `--graphite` daria apenas 3:1. Por isso existe `--mist`:
 todo texto secundário dentro do chassi escuro usa ele.
 
 ## Tipografia
 
 | Papel | Família | Aplicação |
 |---|---|---|
-| Display | **Archivo** 800 | `.letreiro` — caixa alta, tracking −0.02em. Títulos e botões. Letreiro de placa. |
+| Display | **Archivo** 800 | `.signage` — caixa alta, tracking −0.02em. Títulos e botões. Letreiro de placa. |
 | Corpo | **IBM Plex Sans** | Texto corrido. Cheiro de documento de engenharia. |
-| Utilitária | **IBM Plex Mono** | `.etiqueta` (labels em caixa alta) e `.dado` (datas, IDs, nº de CA, com `tabular-nums`). |
+| Utilitária | **IBM Plex Mono** | `.label` (labels em caixa alta) e `.data` (datas, IDs, nº de CA, com `tabular-nums`). |
 
 ## Forma
 
-Canto reto em tudo. A única exceção é `.pictograma`, que é um círculo —
+Canto reto em tudo. A única exceção é `.pictogram`, que é um círculo —
 porque a sinalização normativa usa o círculo para EPI obrigatório e proibição.
 A forma carrega significado tanto quanto a cor.
 
@@ -56,16 +56,16 @@ A forma carrega significado tanto quanto a cor.
 
 | Classe | Papel |
 |---|---|
-| `.placa` | Chapa de aço, borda reta. Unidade de conteúdo do sistema. |
-| `.chassi` | Painel de controle escuro. Sidebar e rodapé. |
-| `.faixa-risco` | Hachura 45° amarelo/preto de sinalização. |
-| `.pictograma` | Disco de sinalização circular. |
-| `.campo` / `.botao` | Controles. `.botao-campo` amplia o alvo — quem usa está de luva. |
-| `.quadro` / `.digito` | O elemento-assinatura (abaixo). |
+| `.panel` | Chapa de aço, borda reta. Unidade de conteúdo do sistema. |
+| `.chassis` | Painel de controle escuro. Sidebar e rodapé. |
+| `.risk-stripe` | Hachura 45° amarelo/preto de sinalização. |
+| `.pictogram` | Disco de sinalização circular. |
+| `.field` / `.button` | Controles. `.button-heavy` amplia o alvo — quem usa está de luva. |
+| `.board` / `.digit` | O elemento-assinatura (abaixo). |
 
 Componentes vivem em `@layer components`. Isso é deliberado: garante que as
-utilities do Tailwind (`text-perigo`, `bg-aco`) sobrescrevam o componente no
-uso. Fora de layer, `.etiqueta { color }` venceria `.text-seguranca` — as duas
+utilities do Tailwind (`text-danger`, `bg-steel`) sobrescrevam o componente no
+uso. Fora de layer, `.label { color }` venceria `.text-safety` — as duas
 têm a mesma especificidade e o componente vinha depois na folha.
 
 ## Estrutura codifica verdade

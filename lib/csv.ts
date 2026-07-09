@@ -2,32 +2,32 @@
  * Excel em português usa ";" como separador e espera BOM para ler acentos.
  * Sem o BOM, "Metalúrgica" chega como "MetalÃºrgica".
  */
-const SEPARADOR = ";";
+const SEPARATOR = ";";
 const BOM = "﻿";
 
-function escapar(valor: string | number): string {
-  const texto = String(valor);
-  if (texto.includes(SEPARADOR) || texto.includes('"') || texto.includes("\n")) {
-    return `"${texto.replace(/"/g, '""')}"`;
+function escape(value: string | number): string {
+  const text = String(value);
+  if (text.includes(SEPARATOR) || text.includes('"') || text.includes("\n")) {
+    return `"${text.replace(/"/g, '""')}"`;
   }
-  return texto;
+  return text;
 }
 
-export function gerarCsv(cabecalhos: string[], linhas: (string | number)[][]): string {
-  const conteudo = [cabecalhos, ...linhas]
-    .map((linha) => linha.map(escapar).join(SEPARADOR))
+export function generateCsv(headers: string[], rows: (string | number)[][]): string {
+  const content = [headers, ...rows]
+    .map((row) => row.map(escape).join(SEPARATOR))
     .join("\r\n");
 
-  return BOM + conteudo;
+  return BOM + content;
 }
 
-export function baixarCsv(nomeArquivo: string, conteudo: string): void {
-  const blob = new Blob([conteudo], { type: "text/csv;charset=utf-8;" });
+export function downloadCsv(fileName: string, content: string): void {
+  const blob = new Blob([content], { type: "text/csv;charset=utf-8;" });
   const url = URL.createObjectURL(blob);
 
   const link = document.createElement("a");
   link.href = url;
-  link.download = nomeArquivo;
+  link.download = fileName;
   link.click();
 
   URL.revokeObjectURL(url);

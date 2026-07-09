@@ -1,78 +1,78 @@
 import { ChecklistForm } from "./ChecklistForm";
-import { Cabecalho } from "@/components/ui/Cabecalho";
+import { PageHeader } from "@/components/ui/PageHeader";
 import { apiFetch } from "@/lib/api";
-import type { ChecklistDiario } from "@/lib/types";
+import type { DailyChecklist } from "@/lib/types";
 
-async function getChecklists(): Promise<ChecklistDiario[]> {
-  return apiFetch<ChecklistDiario[]>("/api/checklists");
+async function getChecklists(): Promise<DailyChecklist[]> {
+  return apiFetch<DailyChecklist[]>("/api/checklists");
 }
 
 export default async function ChecklistPage() {
   const checklists = await getChecklists();
-  const ordenados = [...checklists].sort(
-    (a, b) => new Date(b.data).getTime() - new Date(a.data).getTime()
+  const sorted = [...checklists].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
 
   return (
     <div>
-      <Cabecalho
+      <PageHeader
         eyebrow="Inspeção de campo"
-        titulo="Checklist diário"
-        descricao="Preencha no setor, pelo celular. O indicador no dashboard sobe assim que você registra."
+        title="Checklist diário"
+        description="Preencha no setor, pelo celular. O indicador no dashboard sobe assim que você registra."
       />
 
       <ChecklistForm />
 
       <div className="mt-10">
-        <p className="etiqueta mb-3">Checklists registrados</p>
+        <p className="label mb-3">Checklists registrados</p>
 
-        {ordenados.length === 0 ? (
-          <div className="placa p-8 text-center">
-            <p className="text-sm text-fumaca">
+        {sorted.length === 0 ? (
+          <div className="panel p-8 text-center">
+            <p className="text-sm text-smoke">
               Nenhum checklist registrado. Preencha o formulário acima para começar.
             </p>
           </div>
         ) : (
           <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {ordenados.map((c) => {
-              const naoConformidades = c.itens.filter((i) => i.resposta === "nao").length;
+            {sorted.map((c) => {
+              const nonConformities = c.items.filter((i) => i.answer === "no").length;
               return (
-                <li key={c.id} className="placa">
-                  <div className={`h-1 ${naoConformidades > 0 ? "bg-perigo" : "bg-seguranca"}`} />
+                <li key={c.id} className="panel">
+                  <div className={`h-1 ${nonConformities > 0 ? "bg-danger" : "bg-safety"}`} />
                   <div className="p-4">
                     <div className="flex items-baseline justify-between gap-2">
-                      <span className="letreiro text-sm">{c.setor}</span>
-                      <span className="dado text-fumaca">{c.data}</span>
+                      <span className="signage text-sm">{c.sector}</span>
+                      <span className="data text-smoke">{c.date}</span>
                     </div>
 
-                    <p className="etiqueta mt-1">{c.tecnicoResponsavel}</p>
+                    <p className="label mt-1">{c.responsibleTechnician}</p>
 
-                    <ul className="mt-3 border-t border-traco">
-                      {c.itens.map((item) => (
+                    <ul className="mt-3 border-t border-rule">
+                      {c.items.map((item) => (
                         <li
-                          key={item.descricao}
-                          className="flex items-center justify-between gap-3 py-2 border-b border-traco last:border-0"
+                          key={item.description}
+                          className="flex items-center justify-between gap-3 py-2 border-b border-rule last:border-0"
                         >
-                          <span className="text-sm text-fumaca">{item.descricao}</span>
+                          <span className="text-sm text-smoke">{item.description}</span>
                           <span
-                            className={`etiqueta shrink-0 ${
-                              item.resposta === "nao"
-                                ? "text-perigo"
-                                : item.resposta === "sim"
-                                  ? "text-seguranca"
+                            className={`label shrink-0 ${
+                              item.answer === "no"
+                                ? "text-danger"
+                                : item.answer === "yes"
+                                  ? "text-safety"
                                   : ""
                             }`}
                           >
-                            {item.resposta === "na" ? "N/A" : item.resposta}
+                            {item.answer === "na" ? "N/A" : item.answer === "yes" ? "sim" : "nao"}
                           </span>
                         </li>
                       ))}
                     </ul>
 
-                    {naoConformidades > 0 && (
-                      <p className="etiqueta text-perigo mt-3">
-                        {naoConformidades} não conformidade
-                        {naoConformidades > 1 ? "s" : ""}
+                    {nonConformities > 0 && (
+                      <p className="label text-danger mt-3">
+                        {nonConformities} não conformidade
+                        {nonConformities > 1 ? "s" : ""}
                       </p>
                     )}
                   </div>

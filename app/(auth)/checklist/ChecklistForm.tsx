@@ -3,111 +3,111 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-const ITENS_PADRAO = [
+const DEFAULT_ITEMS = [
   "EPIs em uso corretamente",
   "Extintores acessíveis",
   "Área de trabalho isolada quando necessário",
   "Sinalização de segurança visível",
 ];
 
-type Resposta = "sim" | "nao" | "na";
+type Answer = "yes" | "no" | "na";
 
-const OPCOES: { valor: Resposta; label: string; ativo: string }[] = [
-  { valor: "sim", label: "Sim", ativo: "bg-seguranca text-aco border-seguranca" },
-  { valor: "nao", label: "Não", ativo: "bg-perigo text-aco border-perigo" },
-  { valor: "na", label: "N/A", ativo: "bg-grafite text-aco border-grafite" },
+const OPTIONS: { value: Answer; label: string; active: string }[] = [
+  { value: "yes", label: "Sim", active: "bg-safety text-steel border-safety" },
+  { value: "no", label: "Não", active: "bg-danger text-steel border-danger" },
+  { value: "na", label: "N/A", active: "bg-graphite text-steel border-graphite" },
 ];
 
 export function ChecklistForm() {
   const router = useRouter();
-  const [setor, setSetor] = useState("");
-  const [tecnicoResponsavel, setTecnicoResponsavel] = useState("");
-  const [respostas, setRespostas] = useState<Record<string, Resposta>>({});
-  const [salvando, setSalvando] = useState(false);
-  const [enviado, setEnviado] = useState(false);
+  const [sector, setSector] = useState("");
+  const [responsibleTechnician, setResponsibleTechnician] = useState("");
+  const [answers, setAnswers] = useState<Record<string, Answer>>({});
+  const [saving, setSaving] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setSalvando(true);
+    setSaving(true);
 
-    const itens = ITENS_PADRAO.map((descricao) => ({
-      descricao,
-      resposta: respostas[descricao] ?? "na",
+    const items = DEFAULT_ITEMS.map((description) => ({
+      description,
+      answer: answers[description] ?? "na",
     }));
 
     await fetch("/api/checklists", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ setor, tecnicoResponsavel, itens }),
+      body: JSON.stringify({ sector, responsibleTechnician, items }),
     });
 
-    setSetor("");
-    setTecnicoResponsavel("");
-    setRespostas({});
-    setSalvando(false);
-    setEnviado(true);
+    setSector("");
+    setResponsibleTechnician("");
+    setAnswers({});
+    setSaving(false);
+    setSubmitted(true);
     router.refresh();
   }
 
-  const naoConformidades = Object.values(respostas).filter((r) => r === "nao").length;
+  const nonConformities = Object.values(answers).filter((r) => r === "no").length;
 
   return (
-    <form onSubmit={handleSubmit} className="placa p-5 max-w-2xl">
+    <form onSubmit={handleSubmit} className="panel p-5 max-w-2xl">
       <div className="grid sm:grid-cols-2 gap-4 mb-6">
         <label className="block">
-          <span className="etiqueta">Setor</span>
+          <span className="label">Setor</span>
           <input
-            value={setor}
-            onChange={(e) => setSetor(e.target.value)}
-            className="campo mt-1"
+            value={sector}
+            onChange={(e) => setSector(e.target.value)}
+            className="field mt-1"
             placeholder="Solda, pátio, altura…"
             required
           />
         </label>
         <label className="block">
-          <span className="etiqueta">Técnico responsável</span>
+          <span className="label">Técnico responsável</span>
           <input
-            value={tecnicoResponsavel}
-            onChange={(e) => setTecnicoResponsavel(e.target.value)}
-            className="campo mt-1"
+            value={responsibleTechnician}
+            onChange={(e) => setResponsibleTechnician(e.target.value)}
+            className="field mt-1"
             required
           />
         </label>
       </div>
 
-      <p className="etiqueta mb-3">Itens de verificação</p>
+      <p className="label mb-3">Itens de verificação</p>
 
-      <ul className="border-t border-traco">
-        {ITENS_PADRAO.map((item) => (
+      <ul className="border-t border-rule">
+        {DEFAULT_ITEMS.map((item) => (
           <li
             key={item}
-            className="flex flex-wrap items-center justify-between gap-3 py-3 border-b border-traco"
+            className="flex flex-wrap items-center justify-between gap-3 py-3 border-b border-rule"
           >
             <span className="text-sm flex-1 min-w-[12rem]">{item}</span>
 
             <fieldset className="flex gap-px" aria-label={item}>
-              {OPCOES.map((opcao) => {
-                const marcado = respostas[item] === opcao.valor;
+              {OPTIONS.map((option) => {
+                const checked = answers[item] === option.value;
                 return (
                   <label
-                    key={opcao.valor}
-                    className={`etiqueta cursor-pointer px-4 py-2 border select-none transition-colors ${
-                      marcado
-                        ? opcao.ativo
-                        : "bg-aco border-traco text-fumaca hover:border-grafite"
+                    key={option.value}
+                    className={`label cursor-pointer px-4 py-2 border select-none transition-colors ${
+                      checked
+                        ? option.active
+                        : "bg-steel border-rule text-smoke hover:border-graphite"
                     }`}
                   >
                     <input
                       type="radio"
                       name={item}
-                      value={opcao.valor}
-                      checked={marcado}
+                      value={option.value}
+                      checked={checked}
                       onChange={() =>
-                        setRespostas((prev) => ({ ...prev, [item]: opcao.valor }))
+                        setAnswers((prev) => ({ ...prev, [item]: option.value }))
                       }
                       className="sr-only"
                     />
-                    {opcao.label}
+                    {option.label}
                   </label>
                 );
               })}
@@ -116,18 +116,18 @@ export function ChecklistForm() {
         ))}
       </ul>
 
-      {naoConformidades > 0 && (
-        <p className="etiqueta text-perigo mt-4">
-          {naoConformidades} não conformidade{naoConformidades > 1 ? "s" : ""} neste checklist
+      {nonConformities > 0 && (
+        <p className="label text-danger mt-4">
+          {nonConformities} não conformidade{nonConformities > 1 ? "s" : ""} neste checklist
         </p>
       )}
 
       <div className="flex items-center gap-4 mt-6">
-        <button type="submit" className="botao botao-campo" disabled={salvando}>
-          {salvando ? "Registrando" : "Registrar checklist"}
+        <button type="submit" className="button button-heavy" disabled={saving}>
+          {saving ? "Registrando" : "Registrar checklist"}
         </button>
-        {enviado && !salvando && (
-          <span className="etiqueta text-seguranca">Checklist registrado</span>
+        {submitted && !saving && (
+          <span className="label text-safety">Checklist registrado</span>
         )}
       </div>
     </form>

@@ -9,35 +9,35 @@ import QRCode from "qrcode";
  * Renderizado como data URI num <img>, não via dangerouslySetInnerHTML: o SVG
  * da lib só contém paths, mas um <img> fecha o vetor de injeção de vez.
  */
-export function QrCode({ valor, tamanho = 160 }: { valor: string; tamanho?: number }) {
+export function QrCode({ value, size = 160 }: { value: string; size?: number }) {
   const [src, setSrc] = useState<string | null>(null);
 
   useEffect(() => {
-    let cancelado = false;
+    let cancelled = false;
 
-    QRCode.toDataURL(valor, {
+    QRCode.toDataURL(value, {
       margin: 1,
-      width: tamanho * 2, // 2x para telas retina
+      width: size * 2, // 2x para telas retina
       errorCorrectionLevel: "M",
       color: { dark: "#1b1e23", light: "#fafaf9" },
     })
       .then((dataUrl) => {
-        if (!cancelado) setSrc(dataUrl);
+        if (!cancelled) setSrc(dataUrl);
       })
       .catch(() => {
-        if (!cancelado) setSrc(null);
+        if (!cancelled) setSrc(null);
       });
 
     return () => {
-      cancelado = true;
+      cancelled = true;
     };
-  }, [valor, tamanho]);
+  }, [value, size]);
 
   if (!src) {
     return (
       <div
-        className="bg-concreto border border-traco"
-        style={{ width: tamanho, height: tamanho }}
+        className="bg-concrete border border-rule"
+        style={{ width: size, height: size }}
         aria-hidden="true"
       />
     );
@@ -47,10 +47,10 @@ export function QrCode({ valor, tamanho = 160 }: { valor: string; tamanho?: numb
     // eslint-disable-next-line @next/next/no-img-element -- data URI, sem otimização a fazer
     <img
       src={src}
-      alt={`QR code do equipamento ${valor}`}
-      width={tamanho}
-      height={tamanho}
-      className="border border-traco block"
+      alt={`QR code do equipamento ${value}`}
+      width={size}
+      height={size}
+      className="border border-rule block"
     />
   );
 }
