@@ -1,0 +1,28 @@
+# dependencies (reinstalled in the deps stage via npm ci)
+node_modules
+
+# next.js build output (rebuilt in the build stage)
+.next
+out
+
+# vcs
+.git
+.gitignore
+
+# secrets — never let these into the build context
+.env*
+
+# docs — not needed at runtime, no reason to widen the build context
+*.md
+
+# agent/tooling state, not part of the app
+.claude
+.tickets
+
+# misc
+.DS_Store
+*.pem
+npm-debug.log*
+coverage
+.vercel
+*.tsbuildinfo
