@@ -11,6 +11,8 @@ dentro da validade**. Sem os dois, a LTR não sai.
 > ⚠️ **Protótipo de demonstração comercial.** Sem back-end persistente real, sem
 > autenticação, dados fictícios. Não é produção.
 
+**Demo:** [safetrack-epi.vercel.app](https://safetrack-epi.vercel.app/)
+
 ![Dashboard](docs/screenshots/dashboard.png)
 
 ## Glossário
